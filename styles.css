@@ -16,7 +16,7 @@ html::before {
   background-size: cover;
   background-position: center;
   background-repeat: repeat;
-  opacity: 10%; /* Adjust this value to change the opacity */
+  opacity: 10%;
   top: 0;
   left: 0;
   bottom: 0;
@@ -51,7 +51,7 @@ body {
   font-family: "Bloody", sans-serif;
   background-color: #a5a5a586;
   padding: 20px;
-  width: 50%; /* Could be more or less, depending on screen size */
+  width: 50%;
   border-radius: 10px;
 }
 
@@ -143,6 +143,28 @@ body {
   left: 0;
 }
 
+.header img {
+  width: 15%;
+  height: 20%;
+  margin-top: 7.5vh;
+  margin-right: 2.5vw;
+  filter: drop-shadow(16px 16px 20px rgba(255, 0, 0, 0.458)) invert(5%);
+  animation: blink 5s infinite;
+}
+
+.lower-text {
+  font-family: "Times New Roman", Times, serif;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  bottom: 0;
+  color: rgba(82, 0, 0, 0.416);
+  margin-bottom: 5vh;
+  font-size: 3.5rem;
+  animation: irregularBlink 1s infinite;
+}
+
 @keyframes blink {
   0% {
     opacity: 1;
@@ -155,11 +177,31 @@ body {
   }
 }
 
-.header img {
-  width: 15%;
-  height: 20%;
-  margin-top: 7.5vh;
-  margin-right: 2.5vw;
-  filter: drop-shadow(16px 16px 20px rgba(255, 0, 0, 0.458)) invert(5%);
-  animation: blink 5s infinite;
+@keyframes irregularBlink {
+  0%,
+  19%,
+  21%,
+  23%,
+  35%,
+  37%,
+  54%,
+  56%,
+  75%,
+  85%,
+  90%,
+  92%,
+  94%,
+  100% {
+    opacity: 1;
+  }
+  20%,
+  22%,
+  36%,
+  55%,
+  70%,
+  80%,
+  86%,
+  89% {
+    opacity: 0;
+  }
 }

@@ -27,10 +27,18 @@
     </div>
 
     <div class="container" style="display: none">
-      <div class="level-box" data-text="Level 1">Level 1</div>
-      <div class="level-box" data-text="Level 2">Level 2</div>
-      <div class="level-box" data-text="Level 3">Level 3</div>
-      <div class="level-box" data-text="Level 4">Level 4</div>
+      <a href="./game/level1/index.html"
+        ><div class="level-box" data-text="Level 1">Level 1</div></a
+      >
+      <a href="level2.html"
+        ><div class="level-box" data-text="Level 2">Level 2</div></a
+      >
+      <a href="level3.html"
+        ><div class="level-box" data-text="Level 3">Level 3</div></a
+      >
+      <a href="level4.html"
+        ><div class="level-box" data-text="Level 4">Level 4</div></a
+      >
     </div>
 
     <script>
@@ -43,6 +51,7 @@
           document.getElementById("audio").style.display = "block";
           document.querySelector(".header").style.display = "flex";
           document.querySelector(".container").style.display = "flex";
+          document.querySelector(".lower-text").style.display = "flex";
 
           particlesJS.load(
             "particles-js",
@@ -55,5 +64,8 @@
           document.getElementById("audio").play();
         });
     </script>
+    <div class="lower-text" style="display: none">
+      <p>tHerE is n0 esc4p3</p>
+    </div>
   </body>
 </html>
