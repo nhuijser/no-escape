@@ -3,8 +3,24 @@ html {
   height: 100%;
   padding: 0;
   margin: 0;
-  background-color: #000000;
-  font-family: "Poppins", sans-serif;
+  position: relative;
+  background-color: black;
+  overflow: hidden;
+}
+
+html::before {
+  content: "";
+  background-image: url("./assets/background.gif");
+  background-size: cover;
+  background-position: center;
+  background-repeat: repeat;
+  opacity: 10%; /* Adjust this value to change the opacity */
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
 }
 
 body {
@@ -17,6 +33,52 @@ body {
   z-index: 0;
 }
 
+.modal {
+  display: block; /* Change this to 'none' to hide the modal */
+  position: fixed; /* Stay in place */
+  text-align: center;
+  justify-content: center;
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+}
+
+.modal-content {
+  background-color: #a5a5a586;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  width: 50%; /* Could be more or less, depending on screen size */
+  border-radius: 10px;
+}
+
+.modal-content h2 {
+  color: #ffffff;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.modal-content p {
+  color: #ffffff;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.modal-content button {
+  color: white;
+  background-color: #ff0000;
+  border: none;
+  border-radius: 10px;
+  margin-right: 2.5vw;
+  padding: 10px 20px;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+}
 #particles-js {
   position: absolute;
   height: 100%;
@@ -39,14 +101,14 @@ body {
   position: relative;
   width: 200px;
   height: 200px;
-  background-color: #ffffff68;
+  background-color: #5959596f;
   border-radius: 10px;
   display: inline-flex;
   justify-content: center;
   align-items: center;
   font-size: 24px;
   font-weight: bold;
-  color: #333;
+  color: #a9a9a952;
   z-index: 0; /* Add this line */
 }
 

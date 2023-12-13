@@ -3,29 +3,52 @@
   <head>
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <title>Level Selection</title>
+    <meta charset="utf-8" />
     <link rel="stylesheet" type="text/css" href="styles.css" />
-    <div id="particles-js"></div>
-
-    <!-- particles -->
-    <script>
-      particlesJS.load(
-        "particles-js",
-        "./particles/particles.json",
-        function () {
-          console.log("particles.json loaded...");
-        }
-      );
-    </script>
-    <!-- particles -->
   </head>
   <body>
-    <div class="container">
-      <div class="glitch">
-        <div class="level-box" data-text="Level 1">Level 1</div>
-        <div class="level-box" data-text="Level 2">Level 2</div>
-        <div class="level-box" data-text="Level 3">Level 3</div>
-        <div class="level-box" data-text="Level 4">Level 4</div>
+    <div id="disclaimerModal" class="modal">
+      <div class="modal-content">
+        <h2>DISCLAIMER ⚠️</h2>
+        <p>THIS WEBSITE MAY BE DISRUPTIVE.</p>
+        <p>PROCEED WITH CAUTION!</p>
+        <button id="acceptButton">I understand</button>
       </div>
     </div>
+
+    <div id="particles-js" style="display: none"></div>
+
+    <audio id="audio" loop style="display: none">
+      <source src="./assets/mp3/ambient.mp3" type="audio/mpeg" />
+    </audio>
+
+    <div class="container" style="display: none">
+      <div class="level-box" data-text="Level 1">Level 1</div>
+      <div class="level-box" data-text="Level 2">Level 2</div>
+      <div class="level-box" data-text="Level 3">Level 3</div>
+      <div class="level-box" data-text="Level 4">Level 4</div>
+    </div>
+
+    <script>
+      document
+        .getElementById("acceptButton")
+        .addEventListener("click", function () {
+          document.getElementById("acceptButton").style.display = "none";
+          document.getElementById("disclaimerModal").style.display = "none";
+          document.getElementById("particles-js").style.display = "block";
+          document.getElementById("audio").style.display = "block";
+          document.querySelector(".container").style.display = "flex";
+
+          particlesJS.load(
+            "particles-js",
+            "./particles/particles.json",
+            function () {
+              console.log("particles.json loaded...");
+            }
+          );
+
+          document.getElementById("audio").play();
+        });
+    </script>
   </body>
 </html>
