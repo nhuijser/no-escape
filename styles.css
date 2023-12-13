@@ -1,0 +1,207 @@
+@import url("https://fonts.cdnfonts.com/css/bloody");
+
+html {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  position: relative;
+  background-color: black;
+  overflow: hidden;
+}
+
+html::before {
+  content: "";
+  background-image: url("./assets/background.gif");
+  background-size: cover;
+  background-position: center;
+  background-repeat: repeat;
+  opacity: 10%;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  z-index: 0;
+}
+
+.modal {
+  display: flex;
+  position: fixed;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.modal-content {
+  font-family: "Bloody", sans-serif;
+  background-color: #a5a5a586;
+  padding: 20px;
+  width: 50%;
+  border-radius: 10px;
+}
+
+.modal-content h2 {
+  color: #ffffff;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.modal-content p {
+  color: #ffffff;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.modal-content button {
+  color: white;
+  background-color: #ff0000;
+  border: none;
+  border-radius: 10px;
+  margin-right: 2.5vw;
+  padding: 10px 20px;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  font-family: "Bloody", sans-serif;
+  transition: 0.3s;
+}
+
+.modal-content button:hover {
+  background-color: #ff0000;
+  transform: scale(1.05);
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#particles-js {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  pointer-events: auto;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  gap: 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.level-box {
+  font-family: "Bloody", sans-serif;
+  position: relative;
+  width: 200px;
+  height: 200px;
+  background-color: #5959596f;
+  border-radius: 10px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  font-weight: bold;
+  color: #5c000083;
+  z-index: 0; /* Add this line */
+  transition: 0.5s;
+}
+
+.level-box:hover {
+  background-color: #595959;
+  transform: scale(1.05);
+  cursor: pointer;
+  color: #8d0000f4;
+}
+
+.header {
+  font-family: "Bloody", sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  top: 0;
+  left: 0;
+}
+
+.header img {
+  width: 15%;
+  height: 20%;
+  margin-top: 7.5vh;
+  margin-right: 2.5vw;
+  filter: drop-shadow(16px 16px 20px rgba(255, 0, 0, 0.458)) invert(5%);
+  animation: blink 5s infinite;
+}
+
+.lower-text {
+  font-family: "Times New Roman", Times, serif;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  bottom: 0;
+  color: rgba(82, 0, 0, 0.416);
+  margin-bottom: 5vh;
+  font-size: 3.5rem;
+  animation: irregularBlink 1s infinite;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes irregularBlink {
+  0%,
+  19%,
+  21%,
+  23%,
+  35%,
+  37%,
+  54%,
+  56%,
+  75%,
+  85%,
+  90%,
+  92%,
+  94%,
+  100% {
+    opacity: 1;
+  }
+  20%,
+  22%,
+  36%,
+  55%,
+  70%,
+  80%,
+  86%,
+  89% {
+    opacity: 0;
+  }
+}

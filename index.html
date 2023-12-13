@@ -1,60 +1,71 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Maze</title>
-    <link rel="stylesheet" href="./style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <title>Level Selection</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="styles.css" />
   </head>
   <body>
-    <div id="page">
-      <div id="Message-Container">
-        <div id="message">
-          <h1>Congratulations!</h1>
-          <input
-            id="okBtn"
-            type="button"
-            onclick="toggleVisablity('Message-Container')"
-            value="Ok"
-          />
-        </div>
-      </div>
-
-      <br />
-      <div id="menu">
-        <div class="custom-select">
-          <select id="diffSelect">
-            <option value="10">Easy</option>
-            <option value="15">Medium</option>
-            <option value="25">Hard</option>
-            <option value="38">Extreme</option>
-          </select>
-        </div>
-        <input
-          id="startMazeBtn"
-          type="button"
-          onclick="makeMaze()"
-          value="Start"
-        />
-      </div>
-
-      <div id="view">
-        <div id="mazeContainer">
-          <canvas id="mazeCanvas" class="border"></canvas>
-        </div>
+    <div id="disclaimerModal" class="modal">
+      <div class="modal-content">
+        <h2>DISCLAIMER ⚠️</h2>
+        <p>THIS WEBSITE MAY BE DISRUPTIVE.</p>
+        <p>PROCEED WITH CAUTION!</p>
+        <button id="acceptButton">I understand</button>
       </div>
     </div>
 
-    <script
-      type="text/javascript"
-      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.18/jquery.touchSwipe.min.js"
-    ></script>
+    <div id="particles-js" style="display: none"></div>
 
-    <script src="./script.js"></script>
+    <audio id="audio" loop style="display: none">
+      <source src="./assets/mp3/ambient.mp3" type="audio/mpeg" />
+    </audio>
+
+    <div class="header" style="display: none">
+      <img src="./assets/eye.png" />
+    </div>
+
+    <div class="container" style="display: none">
+      <a href="./game/level1/index.html"
+        ><div class="level-box" data-text="Level 1">Level 1</div></a
+      >
+      <a href="level2.html"
+        ><div class="level-box" data-text="Level 2">Level 2</div></a
+      >
+      <a href="level3.html"
+        ><div class="level-box" data-text="Level 3">Level 3</div></a
+      >
+      <a href="level4.html"
+        ><div class="level-box" data-text="Level 4">Level 4</div></a
+      >
+    </div>
+
+    <script>
+      document
+        .getElementById("acceptButton")
+        .addEventListener("click", function () {
+          document.getElementById("acceptButton").style.display = "none";
+          document.getElementById("disclaimerModal").style.display = "none";
+          document.getElementById("particles-js").style.display = "block";
+          document.getElementById("audio").style.display = "block";
+          document.querySelector(".header").style.display = "flex";
+          document.querySelector(".container").style.display = "flex";
+          document.querySelector(".lower-text").style.display = "flex";
+
+          particlesJS.load(
+            "particles-js",
+            "./particles/particles.json",
+            function () {
+              console.log("particles.json loaded...");
+            }
+          );
+
+          document.getElementById("audio").play();
+        });
+    </script>
+    <div class="lower-text" style="display: none">
+      <p>tHerE is n0 esc4p3</p>
+    </div>
   </body>
 </html>
