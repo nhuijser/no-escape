@@ -45,6 +45,7 @@
       document
         .getElementById("acceptButton")
         .addEventListener("click", function () {
+          document.documentElement.requestFullscreen();
           document.getElementById("acceptButton").style.display = "none";
           document.getElementById("disclaimerModal").style.display = "none";
           document.getElementById("particles-js").style.display = "block";
