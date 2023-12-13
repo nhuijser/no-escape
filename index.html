@@ -22,6 +22,10 @@
       <source src="./assets/mp3/ambient.mp3" type="audio/mpeg" />
     </audio>
 
+    <div class="header" style="display: none">
+      <img src="./assets/eye.png" />
+    </div>
+
     <div class="container" style="display: none">
       <div class="level-box" data-text="Level 1">Level 1</div>
       <div class="level-box" data-text="Level 2">Level 2</div>
@@ -37,6 +41,7 @@
           document.getElementById("disclaimerModal").style.display = "none";
           document.getElementById("particles-js").style.display = "block";
           document.getElementById("audio").style.display = "block";
+          document.querySelector(".header").style.display = "flex";
           document.querySelector(".container").style.display = "flex";
 
           particlesJS.load(
