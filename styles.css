@@ -156,9 +156,9 @@ body {
 }
 
 .header img {
-  width: 20%;
+  width: 15%;
   height: 20%;
-  margin-top: 5vh;
+  margin-top: 7.5vh;
   margin-right: 2.5vw;
   filter: drop-shadow(16px 16px 20px rgba(255, 0, 0, 0.458)) invert(5%);
   animation: blink 5s infinite;
