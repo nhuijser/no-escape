@@ -24,6 +24,7 @@ window.onload = function () {
 
   // When the user clicks on the button, close the modal
   btn.onclick = function () {
+    document.documentElement.requestFullscreen();
     audio.play();
     modal.style.display = "none";
     start();
@@ -65,12 +66,12 @@ function isCollide(a, b) {
 }
 function moveLines() {
   let lines = document.querySelectorAll(".lines");
-  lines.forEach(function (item) {
-    if (item.y >= 700) {
-      item.y -= 750;
-    }
-    item.y += otherSpeed; // Use the otherSpeed variable here
+  lines.forEach(function (item, index, arr) {
+    item.y += otherSpeed;
     item.style.top = item.y + "px";
+    if (item.y >= gameArea.offsetHeight) {
+      item.y = item.y - arr.length * 150;
+    }
   });
 }
 function endGame() {
@@ -96,7 +97,8 @@ function moveCar(car) {
     }
     if (player.start) {
       // Only move the cars if the game is running
-      if (item.y >= 750) {
+      if (item.y >= gameArea.offsetHeight) {
+        // Check if the skeleton's y position is greater than or equal to the height of the game area
         item.y = -300;
         item.style.left = Math.floor(Math.random() * 350) + "px";
       }
@@ -152,14 +154,14 @@ function start() {
   player.score = 0;
   window.requestAnimationFrame(gamePlay);
 
-  for (x = 0; x < 5; x++) {
+  for (x = 0; x < 20; x++) {
+    // Increase the number of lines
     let roadline = document.createElement("div");
     roadline.setAttribute("class", "lines");
-    roadline.y = x * 150;
+    roadline.y = x * 150; // Decrease the distance between lines
     roadline.style.top = roadline.y + "px";
     gameArea.appendChild(roadline);
   }
-
   let car = document.createElement("div");
   car.setAttribute("class", "car");
   gameArea.appendChild(car);
