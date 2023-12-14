@@ -3,7 +3,6 @@ const startScreen = document.querySelector(".startScreen");
 const gameArea = document.querySelector(".gameArea");
 let hitModal = document.getElementById("hitModal");
 let winModal = document.getElementById("winModal");
-let restartBtn = document.getElementById("restartButton");
 let jumpscareImg = document.getElementById("jumpscare");
 let player = { speed: 5, score: 0 }; // Decrease this value to make the car move slower
 let otherSpeed = 7.5;
@@ -17,9 +16,9 @@ audio.currentTime = 10; // Start at 10 seconds
 audio.volume = 0.2;
 
 window.onload = function () {
-  var modal = document.getElementById("startModal");
-  var btn = document.getElementById("startButton");
-
+  let modal = document.getElementById("startModal");
+  let btn = document.getElementById("startButton");
+  let restartBtn = document.getElementById("restartButton");
   // When the page loads, open the modal
   modal.style.display = "block";
 
@@ -27,6 +26,11 @@ window.onload = function () {
   btn.onclick = function () {
     audio.play();
     modal.style.display = "none";
+    start();
+  };
+
+  restartBtn.onclick = function () {
+    hitModal.style.display = "none";
     start();
   };
 };
@@ -77,11 +81,6 @@ function endGame() {
   document.getElementById("jumpscare").style.display = "none";
   hitModal.style.display = "block";
 }
-
-restartBtn.onclick = function () {
-  hitModal.style.display = "none";
-  start();
-};
 
 function moveCar(car) {
   let other = document.querySelectorAll(".other");
@@ -135,7 +134,7 @@ function gamePlay() {
       highest = player.score;
     }
 
-    if (player.score >= 100) {
+    if (player.score >= 3000) {
       winModal.style.display = "block";
       player.start = false;
     }
