@@ -73,9 +73,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 header("location: /no-escape");
                 exit;
             } else {
-                echo "<script>alert('DuMb AsS!')
-                document.getElementById('enter').value = 'try again';
-                </script>";
+                echo '<div id="video-container">
+                <video width="100%" height="100%" autoplay="autoplay" onended="redirectToIndex()">
+                <source src="../../assets/rickroll.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+                </video>
+                </div>';
+                echo "<script>alert('Congrats!')</script>";
             }
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
@@ -86,7 +90,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
-
+<script src="index.js"></script>
 </body>
 
 </html>
