@@ -15,7 +15,6 @@ Start the server using the Live Server extension or anything of your choice.
 ## Features
 
 - Horror themed
-- Mobile Support
 
 ## Authors
 
