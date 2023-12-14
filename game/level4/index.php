@@ -35,16 +35,28 @@ session_start();
 //     exit;
 // }
 
+
+
 try {
-  // when on server remove //
-  $host = 'thuis.wierper.net';
-  $pass = 'NOescape!';
 
-
-  // $pass = 'root';
-  // $host = 'localhost';
+       
   $port='3306';
-  $user = 'gamer';
+  
+
+  // when on server remove //
+
+  if($_SERVER['SERVER_NAME'] == 'localhost') {
+    $host = 'localhost';
+    $pass = 'root';
+    $user = 'root';
+  }else if($_SERVER['SERVER_NAME'] == 'thuis.wierper.net') {
+    $host = 'thuis.wierper.net';
+    $pass = 'NOescape!';
+    $user = 'gamer';
+  }
+
+ 
+
   
   $db= 'no-escape';
   $dbh = new PDO('mysql: host=' . $host.'; dbname='.$db
