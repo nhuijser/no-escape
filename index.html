@@ -70,6 +70,11 @@
     </div>
 
     <script>
+      window.onload = function () {
+        var audio = document.getElementById("audio");
+        audio.volume = 0.1; // Change to desired volume, range is 0.0 to 1.0
+      };
+
       document
         .getElementById("acceptButton")
         .addEventListener("click", function () {
