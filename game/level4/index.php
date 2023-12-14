@@ -36,13 +36,13 @@ session_start();
 // }
 
 try {
-//   when on server remove //
-  // $host = 'thuis.wierper.net';
-  // $pass = 'Wierper1411';
+  // when on server remove //
+  $host = 'thuis.wierper.net';
+  $pass = 'Wierper1411';
 
 
-  $pass = 'root';
-  $host = 'localhost';
+  // $pass = 'root';
+  // $host = 'localhost';
   $port='3306';
   $user = 'root';
   
