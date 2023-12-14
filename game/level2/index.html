@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>asmdaodskook</title>
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+  </head>
+  <body>
+    <img
+      id="jumpscare"
+      src="../../assets/jumpscare.jpg"
+      style="display: none"
+    />
+    <div class="carGame">
+      <div class="score"></div>
+      <div id="startModal" class="modal">
+        <div class="modal-content">
+          <h2>Welcome to the race ⚠️</h2>
+          <p>Don't hit any dead bodies to win...</p>
+          <button id="startButton">Start</button>
+        </div>
+      </div>
+      <div id="winModal" class="modal">
+        <div class="modal-content">
+          <h2>You won.</h2>
+          <p>Continue to next level.</p>
+          <a href="../../index.html"><button id="restartButton">Go!</button></a>
+        </div>
+      </div>
+      <div id="hitModal" class="modal">
+        <div class="modal-content">
+          <h2>You hit a car!</h2>
+          <p>Game Over. Try again?</p>
+          <button id="restartButton">Restart</button>
+        </div>
+      </div>
+      <div class="gameArea"></div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
