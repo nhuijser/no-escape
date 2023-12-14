@@ -1,0 +1,76 @@
+
+@import url("https://fonts.googleapis.com/css2?family=Amatic+SC&display=swap");
+
+* {
+  font-family: 'Amatic SC', sans-serif;
+}
+
+
+body {
+  background-color: black;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#Username {
+  margin-bottom: 1rem;
+}
+
+#button {
+  margin-left: 2rem;
+  padding: 0 2rem;
+  color: rgb(255, 0, 0);
+  background-color: black;
+}
+
+.title-screen {
+  color: rgb(150, 0, 0);
+  font-size: 40px;
+  padding: 0 5rem;
+}
+
+#pass {
+  color: red;
+  font-size: 1.5rem;
+}
+#user{
+  color: red;
+  font-size: 4rem;
+
+}
+
+input{
+  color: red;
+  font-size: 4rem;
+  background-color: black;
+  border: 2px solid red;
+  border-radius: 10px;
+  padding: 0.5rem;
+  margin: 0.5rem;
+}
+
+input:focus{
+  outline: none;
+  background-color: black;
+}
+#eye {
+  width: 200px;
+  margin-left: 8rem;
+  margin: 0 0 0 27%;
+  filter: drop-shadow(16px 16px 20px rgb(255, 0, 0)) invert(5%);
+}
+
+input[type="submit"] {
+  color: rgb(255, 0, 0);
+  background-color: black;
+  border: 2px solid rgb(255, 0, 0);
+  border-radius: 10px;
+  padding: 0.5rem;
+  margin: 0.5rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+} 
