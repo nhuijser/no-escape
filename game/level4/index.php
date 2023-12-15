@@ -4,22 +4,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>InlogPage || CanYOuSee</title>
+    <title>InlogPage || tHerE is n0 esc4p3</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
 <main>
   <div class="title-screen">
-      <img id="eye" src="../../assets/eye.png"><h1>CAn YOu SeE?</h1>
+      <img id="eye" src="../../assets/eye.png"><h1>tHerE is n0 esc4p3</h1>
 
   </div>
 
   <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-    <div class="Inlog">
-      <p id="user">PaSsWoRd</p>
+    <div class="inlog">
+      <p id="pass">PaSsWoRd</p>
       <label for="Password">
-      <input type="password" id="Password" name="password" placeholder="EnTeR PaSs!!"><br><br>
+      <input type="password" id="Password" name="password" placeholder="EnTeR PaSs!!"><br>
       <input id="enter" type="submit" value="Enter">
     </div>
   </form>
@@ -35,15 +35,8 @@ session_start();
 //     exit;
 // }
 
-
-
-try {
-
-       
+try {   
   $port='3306';
-  
-
-  // when on server remove //
 
   if($_SERVER['SERVER_NAME'] == 'localhost') {
     $host = 'localhost';
@@ -55,9 +48,6 @@ try {
     $user = 'gamer';
   }
 
- 
-
-  
   $db= 'no-escape';
   $dbh = new PDO('mysql: host=' . $host.'; dbname='.$db
                 .'; port=' . $port, $user, $pass);
@@ -97,7 +87,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "Error: " . $e->getMessage();
         }
     } else {
-        echo "Please enter a username and password";
+        echo "servers down...";
     }
 }
 ?>
