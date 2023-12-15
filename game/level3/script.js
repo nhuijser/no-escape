@@ -44,6 +44,7 @@ function update(time) {
 
 function startGame(event) {
   if (event.code !== "Space") return;
+  document.documentElement.requestFullscreen();
   if (!jumpscarePlayed) {
     jumpscarePlayed = true;
     jumpscare.play();
