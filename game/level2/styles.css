@@ -50,17 +50,21 @@
 }
 
 .score {
+  background-image: url("../../assets/stone.webp");
   position: absolute;
-  padding-top: 2.5vh;
-  padding-bottom: 2.5vh;
-  padding-left: 5vh;
-  padding-right: 5vh;
-  margin-top: 15%;
-  margin-left: 5%;
+  top: 0;
+  left: 0;
+  width: 25%;
+  height: 10%;
+  margin-top: 40vh;
+  margin-left: 2.5vw;
+  padding-top: 5vh;
+  padding-bottom: 5vh;
   font-size: 2rem;
   font-family: "Bloody";
   background-color: rgba(80, 0, 0, 0.753);
   border-radius: 10px;
+  text-align: center;
 }
 .modal {
   display: none; /* Hidden by default */
@@ -75,13 +79,29 @@
   background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
 }
 
-.modal-content {
-  background-color: #565656;
+#startModal {
+  background-image: url("../../assets/stone.webp");
   justify-content: center;
   text-align: center;
-  margin: 15% auto; /* 15% from the top and centered */
+  margin-top: 20%;
+  margin-left: 35%;
   padding: 1%;
   border-radius: 20px;
+  max-height: 30%;
+  width: 30%; /* Could be more or less, depending on screen size */
+}
+
+#hitModal,
+#winModal {
+  background-image: url("../../assets/stone.webp");
+  justify-content: center;
+  text-align: center;
+  margin-top: 25%;
+  margin-left: 35%;
+  padding: 1%;
+  border-radius: 20px;
+  max-height: 15%;
+  overflow: hidden;
   width: 30%; /* Could be more or less, depending on screen size */
 }
 
