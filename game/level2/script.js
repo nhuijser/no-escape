@@ -132,16 +132,12 @@ function gamePlay() {
 
     window.requestAnimationFrame(gamePlay);
     player.score++;
-    if (player.score >= highest) {
-      highest = player.score;
-    }
 
     if (player.score >= 3000) {
       winModal.style.display = "block";
       player.start = false;
     }
-    score.innerHTML =
-      "Your score:" + player.score + "<br><br>" + "Highest score:" + highest;
+    score.innerText = "Your score:" + player.score;
   }
 }
 function reset() {
