@@ -146,6 +146,7 @@ function reset() {
 function start() {
   gameArea.innerHTML = "";
 
+  score.style.display = "block";
   player.start = true;
   player.score = 0;
   window.requestAnimationFrame(gamePlay);
