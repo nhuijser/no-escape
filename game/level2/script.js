@@ -41,10 +41,15 @@ let keys = {
   ArrowDown: false,
   ArrowRight: false,
   ArrowLeft: false,
+  w: false,
+  s: false,
+  a: false,
+  d: false,
 };
 
 document.addEventListener("keydown", keyDown);
 document.addEventListener("keyup", keyUp);
+
 function keyDown(ev) {
   ev.preventDefault();
   keys[ev.key] = true;
@@ -114,16 +119,16 @@ function gamePlay() {
   if (player.start) {
     moveLines();
     moveCar(car);
-    if (keys.ArrowUp && player.y > road.top + 70) {
+    if ((keys.ArrowUp || keys.w) && player.y > road.top + 70) {
       player.y -= player.speed;
     }
-    if (keys.ArrowDown && player.y < road.bottom - 70) {
+    if ((keys.ArrowDown || keys.s) && player.y < road.bottom - 70) {
       player.y += player.speed;
     }
-    if (keys.ArrowLeft && player.x > 0) {
+    if ((keys.ArrowLeft || keys.a) && player.x > 0) {
       player.x -= player.speed;
     }
-    if (keys.ArrowRight && player.x < road.width - 50) {
+    if ((keys.ArrowRight || keys.d) && player.x < road.width - 50) {
       player.x += player.speed;
     }
 
