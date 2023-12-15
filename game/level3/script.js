@@ -1,5 +1,5 @@
 const SPEED_SCALE = 0.00001;
-
+let jumpscarePlayed = false;
 const game = document.querySelector("#game");
 const scoreDisplay = document.querySelector("#score");
 const startMessage = document.querySelector("#start-message");
@@ -7,6 +7,13 @@ const gameoverMessage = document.querySelector("#gameover-message");
 const noConnectionMessage = document.querySelector(".no-connection h1");
 const tryMessage = document.querySelectorAll(".no-connection li");
 document.addEventListener("keydown", startGame, { once: true });
+let audio = new Audio("../../assets/mp3/talking.mp3");
+audio.loop = true;
+audio.volume = 0.8;
+
+let jumpscare = new Audio("../../assets/mp3/jumpscare.mp3");
+jumpscare.currentTime = 0.5; // Start at 10 seconds
+jumpscare.volume = 1;
 
 /* general variables */
 let lastTime;
@@ -37,6 +44,14 @@ function update(time) {
 
 function startGame(event) {
   if (event.code !== "Space") return;
+  if (!jumpscarePlayed) {
+    jumpscarePlayed = true;
+    jumpscare.play();
+
+    setTimeout(() => {
+      audio.play();
+    }, 2000);
+  }
 
   lastTime = null;
   speedScale = 1;
