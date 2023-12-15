@@ -3,6 +3,7 @@
 * {
   transition: 0.5s;
 }
+
 html,
 body {
   width: 100vw;
@@ -18,23 +19,18 @@ body {
   font-family: "Poppins", sans-serif;
 }
 
-#view {
-  margin-top: 30px;
-}
-
 #mazeContainer {
-  top: 15px;
   opacity: 0;
   display: inline-block;
   margin: auto;
   border-radius: 10px;
   background-color: rgba(255, 255, 255, 0.332);
 }
+
 #mazeContainer #mazeCanvas {
   margin: 0;
   display: block;
   border: solid 2px black;
-  height: 400px;
 }
 
 #mazeCanvas {
@@ -42,6 +38,7 @@ body {
   display: block;
   border: solid 2px black;
 }
+
 input,
 select {
   cursor: pointer;
@@ -58,21 +55,26 @@ select {
   text-decoration: none;
   appearance: none;
 }
+
 input:hover,
 select:hover {
   background-color: rgba(0, 0, 0, 0.7);
 }
+
 input:active,
 select:active {
   background-color: black;
 }
+
 input:focus,
 select:focus {
   outline: none;
 }
+
 .custom-select {
   display: inline-block;
 }
+
 .custom-select select {
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -80,6 +82,7 @@ select:focus {
   background-repeat: no-repeat;
   background-position: 125px center;
 }
+
 #Message-Container {
   visibility: hidden;
   color: white;
@@ -94,6 +97,7 @@ select:focus {
   background-color: rgba(0, 0, 0, 0.3);
   z-index: 1;
 }
+
 #Message-Container #message {
   width: 300px;
   height: 300px;
@@ -103,24 +107,28 @@ select:focus {
   margin-left: -150px;
   margin-top: -150px;
 }
+
 #page {
   text-align: center;
   height: auto;
   width: auto;
   margin: auto;
 }
+
 #page #menu {
   margin: auto;
   padding: 10px;
   height: 65px;
   box-sizing: border-box;
 }
+
 #page #menu h1 {
   margin: 0;
   margin-bottom: 10px;
   font-weight: 600;
   font-size: 3.2rem;
 }
+
 #page #view {
   position: absolute;
   top: 65px;
@@ -130,6 +138,7 @@ select:focus {
   width: 100%;
   height: auto;
 }
+
 .border {
   border: 10px black solid;
   border-radius: 10px;
@@ -141,6 +150,7 @@ select:focus {
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 400px) {
+
   input,
   select {
     width: 120px;

@@ -553,7 +553,7 @@ window.onresize = function () {
     ctx.canvas.width = viewWidth - viewWidth / 100;
     ctx.canvas.height = viewWidth - viewWidth / 100;
   }
-  cellSize = mazeCanvas.width / difficulty;
+  cellSize = mazeCanvas.width / size;
   if (player != null) {
     draw.redrawMaze(cellSize);
     player.redrawPlayer(cellSize);
@@ -565,11 +565,10 @@ function makeMaze() {
     player.unbindKeyDown();
     player = null;
   }
-  let e = document.getElementById("diffSelect");
-  difficulty = e.options[e.selectedIndex].value;
-  cellSize = mazeCanvas.width / difficulty;
+  size = 22;
+  cellSize = mazeCanvas.width / size;
   console.log(mazeCanvas.width, difficulty, cellSize);
-  maze = new Maze(difficulty, difficulty);
+  maze = new Maze(size, size);
   draw = new DrawMaze(maze, ctx, cellSize, finishSprite);
   player = new Player(maze, mazeCanvas, cellSize, displayVictoryMess, sprite);
   if (document.getElementById("mazeContainer").style.opacity < "100") {
