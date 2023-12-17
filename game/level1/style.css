@@ -141,6 +141,11 @@ select:focus {
   margin-top: 425px;
 }
 
+/* Add this to your CSS file */
+.flicker {
+  opacity: 0.5; /* Set the desired opacity during the flicker */
+}
+
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 400px) {
   input,
