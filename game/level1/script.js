@@ -1,3 +1,5 @@
+let jumpscareActive = false;
+
 function rand(max) {
   return Math.floor(Math.random() * max);
 }
@@ -304,38 +306,67 @@ function DrawMaze(Maze, ctx, cellsize, endSprite = null) {
 
   let halfCellSize = cellSize / 2;
 
-  function drawFlashlight(coord) {
-    ctx.save();
+  function drawFlashlight(coord, jumpscare) {
+    // If a jumpscare is not active, update the flashlight
+    if (!jumpscareActive) {
+      ctx.save();
 
-    let flashlightRadius = cellSize * 2;
-    let gradient = ctx.createRadialGradient(
-      (coord.x + 1) * cellSize - halfCellSize,
-      (coord.y + 1) * cellSize - halfCellSize,
-      0,
-      (coord.x + 1) * cellSize - halfCellSize,
-      (coord.y + 1) * cellSize - halfCellSize,
-      flashlightRadius
-    );
+      let flashlightRadius = jumpscare
+        ? Math.max(ctx.canvas.width, ctx.canvas.height)
+        : cellSize * 2;
+      let gradient = ctx.createRadialGradient(
+        (coord.x + 1) * cellSize - halfCellSize,
+        (coord.y + 1) * cellSize - halfCellSize,
+        0,
+        (coord.x + 1) * cellSize - halfCellSize,
+        (coord.y + 1) * cellSize - halfCellSize,
+        flashlightRadius
+      );
 
-    gradient.addColorStop(0, "rgba(0, 0, 0, 0)");
-    gradient.addColorStop(0.7, "rgba(0, 0, 0, 0.3)");
-    gradient.addColorStop(1, "rgba(0, 0, 0, 1)");
+      gradient.addColorStop(0, "rgba(0, 0, 0, 0)");
+      gradient.addColorStop(0.7, "rgba(0, 0, 0, 0.3)  ");
+      gradient.addColorStop(1, "rgba(0, 0, 0, 1)");
 
-    ctx.fillStyle = gradient;
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 
-    ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+      ctx.restore();
+    } else {
+      // if jumpscare active, bigger flashlight
+      ctx.save();
 
-    ctx.restore();
+      let flashlightRadius = Math.max(
+        ctx.canvas.width - 100,
+        ctx.canvas.height - 100
+      );
+
+      let gradient = ctx.createRadialGradient(
+        (coord.x + 1) * cellSize - halfCellSize,
+        (coord.y + 1) * cellSize - halfCellSize,
+        0,
+        (coord.x + 1) * cellSize - halfCellSize,
+        (coord.y + 1) * cellSize - halfCellSize,
+        flashlightRadius
+      );
+
+      gradient.addColorStop(0, "rgba(0, 0, 0, 0)");
+      gradient.addColorStop(1, "rgba(0, 0, 0, 0.9)");
+
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+
+      ctx.restore();
+    }
   }
 
   return {
-    redrawMaze: function (size, playerCoord) {
+    redrawMaze: function (size, playerCoord, jumpscare = false) {
       cellSize = size;
       ctx.lineWidth = cellSize / 50;
       clear();
       drawMap();
       drawEndMethod();
-      drawFlashlight(playerCoord);
+      drawFlashlight(playerCoord, jumpscare);
     },
   };
 }
@@ -608,5 +639,91 @@ function makeMaze() {
   player = new Player(maze, mazeCanvas, cellSize, displayVictoryMess, sprite);
   if (document.getElementById("mazeContainer").style.opacity < "100") {
     document.getElementById("mazeContainer").style.opacity = "100";
+  }
+
+  let audio = new Audio("../../assets/mp3/help.mp3");
+  audio.loop = true;
+  audio.volume = 0.5;
+
+  let keyPressed = false;
+
+  function playAudioAndRemoveListener() {
+    audio.play();
+    // Remove the event listener after the first interaction
+    document.removeEventListener("keydown", playAudioAndRemoveListener);
+
+    // Set the keyPressed flag to true
+    keyPressed = true;
+
+    // Stop the audio after a maximum play time
+    let maxPlayTime = 78000; // Maximum play time in milliseconds (e.g., 60000ms = 60 seconds)
+    setInterval(function () {
+      audio.pause(); // Stop the audio
+      audio.currentTime = 0; // Reset the audio to the start
+      audio.volume = 0.5;
+      audio.play();
+    }, maxPlayTime);
+
+    // Schedule the first jumpscare after a key has been pressed
+    let initialDelay = 30000; // 30 seconds, adjust as needed
+    console.log(
+      "Next jumpscare in " + Math.floor(initialDelay / 1000) + " seconds"
+    );
+    setTimeout(playJumpscare, initialDelay);
+  }
+
+  document.addEventListener("keydown", playAudioAndRemoveListener);
+
+  function playJumpscare() {
+    if (keyPressed) {
+      // Set the jumpscareActive flag to true
+      jumpscareActive = true;
+
+      // Generate a random number between 1 and 50
+      let jumpscareNumber = Math.floor(Math.random() * 50) + 1;
+
+      // Construct the filename of the jumpscare
+      let jumpscareFilename = `./jumpscares/jumpscare${jumpscareNumber}.wav`;
+
+      // Create a new Audio object
+      let jumpscareAudio = new Audio(jumpscareFilename);
+      jumpscareAudio.volume = 1;
+      jumpscareAudio.play();
+
+      // Get the maze canvas
+      let mazeCanvas = document.getElementById("mazeCanvas");
+
+      // Flicker the maze canvas
+      let flickerInterval = setInterval(function () {
+        mazeCanvas.style.opacity =
+          mazeCanvas.style.opacity === "1" ? "0.1" : "1";
+        draw.redrawMaze(cellSize, player.getPlayerCoords(), true);
+        player.redrawPlayer(cellSize, player.getPlayerCoords());
+        document.getElementById("mazeCanvas").style.backgroundColor = "red";
+      }, 100);
+
+      // Stop flickering after 1 second
+      setTimeout(function () {
+        clearInterval(flickerInterval);
+        mazeCanvas.style.opacity = "1";
+        jumpscareActive = false;
+        draw.redrawMaze(cellSize, player.getPlayerCoords());
+        player.redrawPlayer(cellSize, player.getPlayerCoords());
+        document.getElementById("mazeCanvas").style.backgroundColor = "";
+
+        // Call redrawMaze and redrawPlayer after the jumpscare
+      }, 3000);
+
+      // Set a random delay between 30 and 20 seconds (10000-20000 milliseconds)
+      let delay = Math.random() * 10000 + 20000;
+      console.log("Next jumpscare in " + Math.floor(delay / 1000) + " seconds");
+
+      // Schedule the next jumpscare
+      setTimeout(function () {
+        // Reset the jumpscareActive flag to false before the next jumpscare
+        jumpscareActive = false;
+        playJumpscare();
+      }, delay);
+    }
   }
 }
