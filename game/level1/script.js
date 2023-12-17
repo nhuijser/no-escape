@@ -127,21 +127,16 @@ function Maze(Width, Height) {
         let ny = pos.y + modDir[direction].y;
 
         if (nx >= 0 && nx < width && ny >= 0 && ny < height) {
-          //Check if the tile is already visited
           if (!mazeMap[nx][ny].visited) {
-            //Carve through walls from this tile to next
             mazeMap[pos.x][pos.y][direction] = true;
             mazeMap[nx][ny][modDir[direction].o] = true;
 
-            //Set Currentcell as next cells Prior visited
             mazeMap[nx][ny].priorPos = pos;
-            //Update Cell position to newly visited location
             pos = {
               x: nx,
               y: ny,
             };
             cellsVisited++;
-            //Recursively call this method on the next tile
             move = true;
             break;
           }
@@ -149,8 +144,6 @@ function Maze(Width, Height) {
       }
 
       if (!move) {
-        //  If it failed to find a direction,
-        //  move the current position back to the prior cell and Recall the method.
         pos = mazeMap[pos.x][pos.y].priorPos;
       }
       if (numCells == cellsVisited) {
@@ -309,14 +302,12 @@ function DrawMaze(Maze, ctx, cellsize, endSprite = null) {
     drawEndMethod = drawEndFlag;
   }
 
-  let flashlightRadius = cellSize * 20; // You can adjust the radius as needed
   let halfCellSize = cellSize / 2;
 
   function drawFlashlight(coord) {
     ctx.save();
 
-    // Set up radial gradient for flashlight effect
-    let flashlightRadius = cellSize * 1.5; // Adjust the radius as needed
+    let flashlightRadius = cellSize * 2;
     let gradient = ctx.createRadialGradient(
       (coord.x + 1) * cellSize - halfCellSize,
       (coord.y + 1) * cellSize - halfCellSize,
@@ -328,11 +319,10 @@ function DrawMaze(Maze, ctx, cellsize, endSprite = null) {
 
     gradient.addColorStop(0, "rgba(0, 0, 0, 0)");
     gradient.addColorStop(0.7, "rgba(0, 0, 0, 0.3)");
-    gradient.addColorStop(1, "rgba(0, 0, 0, 0.7)");
+    gradient.addColorStop(1, "rgba(0, 0, 0, 1)");
 
     ctx.fillStyle = gradient;
 
-    // Draw a rectangle covering the entire canvas
     ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 
     ctx.restore();
@@ -345,7 +335,7 @@ function DrawMaze(Maze, ctx, cellsize, endSprite = null) {
       clear();
       drawMap();
       drawEndMethod();
-      drawFlashlight(playerCoord); // Add this line to include the flashlight effect
+      drawFlashlight(playerCoord);
     },
   };
 }
@@ -377,10 +367,8 @@ function Player(maze, c, _cellsize, onComplete, sprite = null) {
   };
 
   function drawSpriteCircle(coord) {
-    // Draw the maze
     drawMap();
 
-    // Create a radial gradient for the darkness
     let gradient = ctx.createRadialGradient(
       (coord.x + 1) * cellSize - halfCellSize,
       (coord.y + 1) * cellSize - halfCellSize,
@@ -393,7 +381,6 @@ function Player(maze, c, _cellsize, onComplete, sprite = null) {
     gradient.addColorStop(0, "rgba(0, 0, 0, 0)");
     gradient.addColorStop(1, "rgba(0, 0, 0, 0.7)");
 
-    // Draw the darkness using the radial gradient
     ctx.fillStyle = gradient;
     ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 
@@ -434,17 +421,6 @@ function Player(maze, c, _cellsize, onComplete, sprite = null) {
       onComplete(moves);
       player.unbindKeyDown();
     }
-  }
-
-  function removeSprite(coord) {
-    let offsetLeft = cellSize / 50;
-    let offsetRight = cellSize / 25;
-    ctx.clearRect(
-      coord.x * cellSize + offsetLeft,
-      coord.y * cellSize + offsetLeft,
-      cellSize - offsetRight,
-      cellSize - offsetRight
-    );
   }
 
   function check(e) {
