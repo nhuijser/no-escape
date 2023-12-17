@@ -127,21 +127,16 @@ function Maze(Width, Height) {
         let ny = pos.y + modDir[direction].y;
 
         if (nx >= 0 && nx < width && ny >= 0 && ny < height) {
-          //Check if the tile is already visited
           if (!mazeMap[nx][ny].visited) {
-            //Carve through walls from this tile to next
             mazeMap[pos.x][pos.y][direction] = true;
             mazeMap[nx][ny][modDir[direction].o] = true;
 
-            //Set Currentcell as next cells Prior visited
             mazeMap[nx][ny].priorPos = pos;
-            //Update Cell position to newly visited location
             pos = {
               x: nx,
               y: ny,
             };
             cellsVisited++;
-            //Recursively call this method on the next tile
             move = true;
             break;
           }
@@ -149,8 +144,6 @@ function Maze(Width, Height) {
       }
 
       if (!move) {
-        //  If it failed to find a direction,
-        //  move the current position back to the prior cell and Recall the method.
         pos = mazeMap[pos.x][pos.y].priorPos;
       }
       if (numCells == cellsVisited) {
@@ -212,15 +205,6 @@ function Maze(Width, Height) {
 function DrawMaze(Maze, ctx, cellsize, endSprite = null) {
   let map = Maze.map();
   let cellSize = cellsize;
-  let drawEndMethod;
-  ctx.lineWidth = cellSize / 40;
-
-  this.redrawMaze = function (size) {
-    cellSize = size;
-    ctx.lineWidth = cellSize / 50;
-    drawMap();
-    drawEndMethod();
-  };
 
   function drawCell(xCord, yCord, cell) {
     let x = xCord * cellSize;
@@ -253,8 +237,8 @@ function DrawMaze(Maze, ctx, cellsize, endSprite = null) {
   }
 
   function drawMap() {
-    for (x = 0; x < map.length; x++) {
-      for (y = 0; y < map[x].length; y++) {
+    for (let x = 0; x < map.length; x++) {
+      for (let y = 0; y < map[x].length; y++) {
         drawCell(x, y, map[x][y]);
       }
     }
@@ -310,14 +294,50 @@ function DrawMaze(Maze, ctx, cellsize, endSprite = null) {
     ctx.clearRect(0, 0, canvasSize, canvasSize);
   }
 
+  let drawEndMethod;
+
   if (endSprite != null) {
     drawEndMethod = drawEndSprite;
   } else {
     drawEndMethod = drawEndFlag;
   }
-  clear();
-  drawMap();
-  drawEndMethod();
+
+  let halfCellSize = cellSize / 2;
+
+  function drawFlashlight(coord) {
+    ctx.save();
+
+    let flashlightRadius = cellSize * 2;
+    let gradient = ctx.createRadialGradient(
+      (coord.x + 1) * cellSize - halfCellSize,
+      (coord.y + 1) * cellSize - halfCellSize,
+      0,
+      (coord.x + 1) * cellSize - halfCellSize,
+      (coord.y + 1) * cellSize - halfCellSize,
+      flashlightRadius
+    );
+
+    gradient.addColorStop(0, "rgba(0, 0, 0, 0)");
+    gradient.addColorStop(0.7, "rgba(0, 0, 0, 0.3)");
+    gradient.addColorStop(1, "rgba(0, 0, 0, 1)");
+
+    ctx.fillStyle = gradient;
+
+    ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+
+    ctx.restore();
+  }
+
+  return {
+    redrawMaze: function (size, playerCoord) {
+      cellSize = size;
+      ctx.lineWidth = cellSize / 50;
+      clear();
+      drawMap();
+      drawEndMethod();
+      drawFlashlight(playerCoord);
+    },
+  };
 }
 
 function Player(maze, c, _cellsize, onComplete, sprite = null) {
@@ -337,12 +357,34 @@ function Player(maze, c, _cellsize, onComplete, sprite = null) {
   let cellSize = _cellsize;
   let halfCellSize = cellSize / 2;
 
-  this.redrawPlayer = function (_cellsize) {
+  this.getPlayerCoords = function () {
+    return cellCoords;
+  };
+
+  this.redrawPlayer = function (_cellsize, playerCoord) {
     cellSize = _cellsize;
-    drawSpriteImg(cellCoords);
+    drawSpriteImg(playerCoord);
   };
 
   function drawSpriteCircle(coord) {
+    drawMap();
+
+    let gradient = ctx.createRadialGradient(
+      (coord.x + 1) * cellSize - halfCellSize,
+      (coord.y + 1) * cellSize - halfCellSize,
+      0,
+      (coord.x + 1) * cellSize - halfCellSize,
+      (coord.y + 1) * cellSize - halfCellSize,
+      cellSize * 3
+    );
+
+    gradient.addColorStop(0, "rgba(0, 0, 0, 0)");
+    gradient.addColorStop(1, "rgba(0, 0, 0, 0.7)");
+
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+
+    // Draw the player
     ctx.beginPath();
     ctx.fillStyle = "yellow";
     ctx.arc(
@@ -353,6 +395,8 @@ function Player(maze, c, _cellsize, onComplete, sprite = null) {
       2 * Math.PI
     );
     ctx.fill();
+
+    // Check if the player is at the maze's end
     if (coord.x === maze.endCoord().x && coord.y === maze.endCoord().y) {
       onComplete(moves);
       player.unbindKeyDown();
@@ -379,66 +423,55 @@ function Player(maze, c, _cellsize, onComplete, sprite = null) {
     }
   }
 
-  function removeSprite(coord) {
-    let offsetLeft = cellSize / 50;
-    let offsetRight = cellSize / 25;
-    ctx.clearRect(
-      coord.x * cellSize + offsetLeft,
-      coord.y * cellSize + offsetLeft,
-      cellSize - offsetRight,
-      cellSize - offsetRight
-    );
-  }
-
   function check(e) {
     let cell = map[cellCoords.x][cellCoords.y];
     moves++;
+
+    // Store the current player coordinates before the move
+    let oldCoords = { x: cellCoords.x, y: cellCoords.y };
+
     switch (e.keyCode) {
       case 65:
       case 37: // west
         if (cell.w == true) {
-          removeSprite(cellCoords);
           cellCoords = {
             x: cellCoords.x - 1,
             y: cellCoords.y,
           };
-          drawSprite(cellCoords);
         }
         break;
       case 87:
       case 38: // north
         if (cell.n == true) {
-          removeSprite(cellCoords);
           cellCoords = {
             x: cellCoords.x,
             y: cellCoords.y - 1,
           };
-          drawSprite(cellCoords);
         }
         break;
       case 68:
       case 39: // east
         if (cell.e == true) {
-          removeSprite(cellCoords);
           cellCoords = {
             x: cellCoords.x + 1,
             y: cellCoords.y,
           };
-          drawSprite(cellCoords);
         }
         break;
       case 83:
       case 40: // south
         if (cell.s == true) {
-          removeSprite(cellCoords);
           cellCoords = {
             x: cellCoords.x,
             y: cellCoords.y + 1,
           };
-          drawSprite(cellCoords);
         }
         break;
     }
+
+    // Draw the maze and player with updated coordinates
+    draw.redrawMaze(cellSize, cellCoords);
+    player.redrawPlayer(cellSize, cellCoords);
   }
 
   this.bindKeyDown = function () {
@@ -476,6 +509,8 @@ function Player(maze, c, _cellsize, onComplete, sprite = null) {
             });
             break;
         }
+        draw.redrawMaze(cellSize, player.getPlayerCoords());
+        player.redrawPlayer(cellSize, player.getPlayerCoords());
       },
       threshold: 0,
     });
