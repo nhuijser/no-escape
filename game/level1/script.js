@@ -335,7 +335,10 @@ function DrawMaze(Maze, ctx, cellsize, endSprite = null) {
       // if jumpscare active, bigger flashlight
       ctx.save();
 
-      let flashlightRadius = Math.max(ctx.canvas.width, ctx.canvas.height);
+      let flashlightRadius = Math.max(
+        ctx.canvas.width - 100,
+        ctx.canvas.height - 100
+      );
 
       let gradient = ctx.createRadialGradient(
         (coord.x + 1) * cellSize - halfCellSize,
@@ -662,7 +665,7 @@ function makeMaze() {
     }, maxPlayTime);
 
     // Schedule the first jumpscare after a key has been pressed
-    let initialDelay = 2000; // 2 seconds, adjust as needed
+    let initialDelay = 30000; // 30 seconds, adjust as needed
     console.log(
       "Next jumpscare in " + Math.floor(initialDelay / 1000) + " seconds"
     );
@@ -711,8 +714,8 @@ function makeMaze() {
         // Call redrawMaze and redrawPlayer after the jumpscare
       }, 3000);
 
-      // Set a random delay between 10 and 15 seconds (10000-15000 milliseconds)
-      let delay = Math.random() * 5000 + 10000;
+      // Set a random delay between 30 and 20 seconds (10000-20000 milliseconds)
+      let delay = Math.random() * 10000 + 20000;
       console.log("Next jumpscare in " + Math.floor(delay / 1000) + " seconds");
 
       // Schedule the next jumpscare
