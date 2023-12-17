@@ -212,15 +212,6 @@ function Maze(Width, Height) {
 function DrawMaze(Maze, ctx, cellsize, endSprite = null) {
   let map = Maze.map();
   let cellSize = cellsize;
-  let drawEndMethod;
-  ctx.lineWidth = cellSize / 40;
-
-  this.redrawMaze = function (size) {
-    cellSize = size;
-    ctx.lineWidth = cellSize / 50;
-    drawMap();
-    drawEndMethod();
-  };
 
   function drawCell(xCord, yCord, cell) {
     let x = xCord * cellSize;
@@ -253,8 +244,8 @@ function DrawMaze(Maze, ctx, cellsize, endSprite = null) {
   }
 
   function drawMap() {
-    for (x = 0; x < map.length; x++) {
-      for (y = 0; y < map[x].length; y++) {
+    for (let x = 0; x < map.length; x++) {
+      for (let y = 0; y < map[x].length; y++) {
         drawCell(x, y, map[x][y]);
       }
     }
@@ -310,14 +301,53 @@ function DrawMaze(Maze, ctx, cellsize, endSprite = null) {
     ctx.clearRect(0, 0, canvasSize, canvasSize);
   }
 
+  let drawEndMethod;
+
   if (endSprite != null) {
     drawEndMethod = drawEndSprite;
   } else {
     drawEndMethod = drawEndFlag;
   }
-  clear();
-  drawMap();
-  drawEndMethod();
+
+  let flashlightRadius = cellSize * 20; // You can adjust the radius as needed
+  let halfCellSize = cellSize / 2;
+
+  function drawFlashlight(coord) {
+    ctx.save();
+
+    // Set up radial gradient for flashlight effect
+    let flashlightRadius = cellSize * 1.5; // Adjust the radius as needed
+    let gradient = ctx.createRadialGradient(
+      (coord.x + 1) * cellSize - halfCellSize,
+      (coord.y + 1) * cellSize - halfCellSize,
+      0,
+      (coord.x + 1) * cellSize - halfCellSize,
+      (coord.y + 1) * cellSize - halfCellSize,
+      flashlightRadius
+    );
+
+    gradient.addColorStop(0, "rgba(0, 0, 0, 0)");
+    gradient.addColorStop(0.7, "rgba(0, 0, 0, 0.3)");
+    gradient.addColorStop(1, "rgba(0, 0, 0, 0.7)");
+
+    ctx.fillStyle = gradient;
+
+    // Draw a rectangle covering the entire canvas
+    ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+
+    ctx.restore();
+  }
+
+  return {
+    redrawMaze: function (size, playerCoord) {
+      cellSize = size;
+      ctx.lineWidth = cellSize / 50;
+      clear();
+      drawMap();
+      drawEndMethod();
+      drawFlashlight(playerCoord); // Add this line to include the flashlight effect
+    },
+  };
 }
 
 function Player(maze, c, _cellsize, onComplete, sprite = null) {
@@ -337,12 +367,37 @@ function Player(maze, c, _cellsize, onComplete, sprite = null) {
   let cellSize = _cellsize;
   let halfCellSize = cellSize / 2;
 
-  this.redrawPlayer = function (_cellsize) {
+  this.getPlayerCoords = function () {
+    return cellCoords;
+  };
+
+  this.redrawPlayer = function (_cellsize, playerCoord) {
     cellSize = _cellsize;
-    drawSpriteImg(cellCoords);
+    drawSpriteImg(playerCoord);
   };
 
   function drawSpriteCircle(coord) {
+    // Draw the maze
+    drawMap();
+
+    // Create a radial gradient for the darkness
+    let gradient = ctx.createRadialGradient(
+      (coord.x + 1) * cellSize - halfCellSize,
+      (coord.y + 1) * cellSize - halfCellSize,
+      0,
+      (coord.x + 1) * cellSize - halfCellSize,
+      (coord.y + 1) * cellSize - halfCellSize,
+      cellSize * 3
+    );
+
+    gradient.addColorStop(0, "rgba(0, 0, 0, 0)");
+    gradient.addColorStop(1, "rgba(0, 0, 0, 0.7)");
+
+    // Draw the darkness using the radial gradient
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+
+    // Draw the player
     ctx.beginPath();
     ctx.fillStyle = "yellow";
     ctx.arc(
@@ -353,6 +408,8 @@ function Player(maze, c, _cellsize, onComplete, sprite = null) {
       2 * Math.PI
     );
     ctx.fill();
+
+    // Check if the player is at the maze's end
     if (coord.x === maze.endCoord().x && coord.y === maze.endCoord().y) {
       onComplete(moves);
       player.unbindKeyDown();
@@ -393,52 +450,52 @@ function Player(maze, c, _cellsize, onComplete, sprite = null) {
   function check(e) {
     let cell = map[cellCoords.x][cellCoords.y];
     moves++;
+
+    // Store the current player coordinates before the move
+    let oldCoords = { x: cellCoords.x, y: cellCoords.y };
+
     switch (e.keyCode) {
       case 65:
       case 37: // west
         if (cell.w == true) {
-          removeSprite(cellCoords);
           cellCoords = {
             x: cellCoords.x - 1,
             y: cellCoords.y,
           };
-          drawSprite(cellCoords);
         }
         break;
       case 87:
       case 38: // north
         if (cell.n == true) {
-          removeSprite(cellCoords);
           cellCoords = {
             x: cellCoords.x,
             y: cellCoords.y - 1,
           };
-          drawSprite(cellCoords);
         }
         break;
       case 68:
       case 39: // east
         if (cell.e == true) {
-          removeSprite(cellCoords);
           cellCoords = {
             x: cellCoords.x + 1,
             y: cellCoords.y,
           };
-          drawSprite(cellCoords);
         }
         break;
       case 83:
       case 40: // south
         if (cell.s == true) {
-          removeSprite(cellCoords);
           cellCoords = {
             x: cellCoords.x,
             y: cellCoords.y + 1,
           };
-          drawSprite(cellCoords);
         }
         break;
     }
+
+    // Draw the maze and player with updated coordinates
+    draw.redrawMaze(cellSize, cellCoords);
+    player.redrawPlayer(cellSize, cellCoords);
   }
 
   this.bindKeyDown = function () {
@@ -476,6 +533,8 @@ function Player(maze, c, _cellsize, onComplete, sprite = null) {
             });
             break;
         }
+        draw.redrawMaze(cellSize, player.getPlayerCoords());
+        player.redrawPlayer(cellSize, player.getPlayerCoords());
       },
       threshold: 0,
     });
