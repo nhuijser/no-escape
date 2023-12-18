@@ -309,7 +309,7 @@ function DrawMaze(Maze, ctx, cellsize, endSprite = null) {
 
       let flashlightRadius = jumpscare
         ? Math.max(ctx.canvas.width, ctx.canvas.height)
-        : cellSize * 2;
+        : cellSize * 3;
       let gradient = ctx.createRadialGradient(
         (coord.x + 1) * cellSize - halfCellSize,
         (coord.y + 1) * cellSize - halfCellSize,
