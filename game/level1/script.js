@@ -41,7 +41,7 @@ function displayVictoryMess() {
 function toggleVisibility(id) {
   var element = document.getElementById(id);
   element.style.display = "block";
-  element.visibility = "visible";
+  element.style.visibility = "visible";
 }
 function Maze(Width, Height) {
   let mazeMap;
@@ -425,7 +425,6 @@ function Player(maze, c, _cellsize, onComplete, sprite = null) {
 
     // Check if the player is at the maze's end
     if (coord.x === maze.endCoord().x && coord.y === maze.endCoord().y) {
-      console.log("a");
       displayVictoryMess();
       player.unbindKeyDown();
     }
@@ -500,8 +499,8 @@ function Player(maze, c, _cellsize, onComplete, sprite = null) {
 
     // Draw the maze and player with updated coordinates
 
-    draw.redrawMaze(cellSize, cellCoords);
-    player.redrawPlayer(cellSize, cellCoords);
+    draw.redrawMaze(cellSize, player.getPlayerCoords());
+    player.redrawPlayer(cellSize, player.getPlayerCoords());
     document.getElementById("startMessage-Container").style.display = "none";
     document.documentElement.requestFullscreen();
   }
