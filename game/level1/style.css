@@ -82,7 +82,7 @@ select:focus {
   color: white;
   display: block;
   width: 100vw;
-  height: 100vh;
+  margin-top: 30vh;
   position: fixed;
   top: 0;
   left: 0;
@@ -90,17 +90,6 @@ select:focus {
   right: 0;
   background-color: rgba(0, 0, 0, 0.3);
   z-index: 1;
-}
-
-#Message-Container #message {
-  display: none;
-  width: 300px;
-  height: 300px;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  margin-left: -150px;
-  margin-top: -150px;
 }
 
 #startMessage-Container {

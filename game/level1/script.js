@@ -40,11 +40,8 @@ function displayVictoryMess() {
 
 function toggleVisibility(id) {
   var element = document.getElementById(id);
-  if (element.style.visibility === "visible") {
-    element.style.visibility = "hidden";
-  } else {
-    element.style.visibility = "visible";
-  }
+  element.style.display = "block";
+  element.visibility = "visible";
 }
 function Maze(Width, Height) {
   let mazeMap;
@@ -428,7 +425,8 @@ function Player(maze, c, _cellsize, onComplete, sprite = null) {
 
     // Check if the player is at the maze's end
     if (coord.x === maze.endCoord().x && coord.y === maze.endCoord().y) {
-      onComplete(moves);
+      console.log("a");
+      displayVictoryMess();
       player.unbindKeyDown();
     }
   }
@@ -448,7 +446,7 @@ function Player(maze, c, _cellsize, onComplete, sprite = null) {
       cellSize - offsetRight
     );
     if (coord.x === maze.endCoord().x && coord.y === maze.endCoord().y) {
-      onComplete(moves);
+      displayVictoryMess();
       player.unbindKeyDown();
     }
   }
