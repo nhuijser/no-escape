@@ -34,18 +34,18 @@ function changeBrightness(factor, sprite) {
   return spriteOutput;
 }
 
-function displayVictoryMess(moves) {
+function displayVictoryMess() {
   toggleVisablity("Message-Container");
 }
 
-function toggleVisablity(id) {
-  if (document.getElementById(id).style.visibility == "visible") {
-    document.getElementById(id).style.visibility = "hidden";
+function toggleVisibility(id) {
+  var element = document.getElementById(id);
+  if (element.style.visibility === "visible") {
+    element.style.visibility = "hidden";
   } else {
-    document.getElementById(id).style.visibility = "visible";
+    element.style.visibility = "visible";
   }
 }
-
 function Maze(Width, Height) {
   let mazeMap;
   let width = Width;
@@ -313,7 +313,7 @@ function DrawMaze(Maze, ctx, cellsize, endSprite = null) {
 
       let flashlightRadius = jumpscare
         ? Math.max(ctx.canvas.width, ctx.canvas.height)
-        : cellSize * 3;
+        : cellSize * 2;
       let gradient = ctx.createRadialGradient(
         (coord.x + 1) * cellSize - halfCellSize,
         (coord.y + 1) * cellSize - halfCellSize,
@@ -497,12 +497,14 @@ function Player(maze, c, _cellsize, onComplete, sprite = null) {
             y: cellCoords.y + 1,
           };
         }
+
         break;
     }
 
     // Draw the maze and player with updated coordinates
     draw.redrawMaze(cellSize, cellCoords);
     player.redrawPlayer(cellSize, cellCoords);
+    document.getElementById("startMessage-Container").style.display = "none";
   }
 
   this.bindKeyDown = function () {
@@ -540,8 +542,6 @@ function Player(maze, c, _cellsize, onComplete, sprite = null) {
             });
             break;
         }
-        draw.redrawMaze(cellSize, player.getPlayerCoords());
-        player.redrawPlayer(cellSize, player.getPlayerCoords());
       },
       threshold: 0,
     });

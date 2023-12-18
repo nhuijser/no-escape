@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Afacad&family=Creepster&display=swap");
 
 * {
   transition: 0.5s;
@@ -92,6 +93,7 @@ select:focus {
 }
 
 #Message-Container #message {
+  display: none;
   width: 300px;
   height: 300px;
   position: fixed;
@@ -101,6 +103,25 @@ select:focus {
   margin-top: -150px;
 }
 
+#startMessage-Container {
+  color: white;
+  display: block;
+  width: 100vw;
+  margin-top: 30vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+}
+
+#startMessage-Container h1 {
+  font-size: 3.5rem;
+  margin: 0;
+  margin-bottom: 10px;
+  font-family: "creepster";
+}
 #page {
   text-align: center;
   height: auto;
