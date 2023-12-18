@@ -13,7 +13,10 @@ jumpscare.volume = 1;
 let audio = new Audio("../../assets/mp3/selector.mp3");
 audio.loop = true;
 audio.currentTime = 10; // Start at 10 seconds
-audio.volume = 0.2;
+audio.volume = 0.1;
+let carAudio = new Audio("../../assets/mp3/car.mp3");
+carAudio.loop = true;
+carAudio.volume = 0.01;
 
 window.onload = function () {
   let modal = document.getElementById("startModal");
@@ -95,6 +98,8 @@ function moveCar(car) {
       // Add the condition here
       player.start = false; // Stop the game immediately
       document.getElementById("jumpscare").style.display = "block"; // Show the jumpscare image
+      carAudio.pause();
+      carAudio.currentTime = 0.5;
       jumpscare.play();
       setTimeout(function () {
         endGame();
@@ -149,6 +154,7 @@ function reset() {
   highest = 0;
 }
 function start() {
+  carAudio.play();
   gameArea.innerHTML = "";
 
   score.style.display = "block";
