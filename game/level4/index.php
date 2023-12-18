@@ -11,18 +11,20 @@
 
 <body>
 <div id="fietsband">
-  <video width="100%" height="100%" autoplay="autoplay" onended="redirectToIndex()">
+  <video id='video' width="100%" height="100%" autoplay="autoplay" onended="hideVideo()">
   <source src="../../assets/fietsband.mp4" type="video/mp4">
   Your browser does not support the video tag.
   </video>
 </div>
-<button class="skip" onclick="hideVideo()" id="skip" type="button">Overslaan <i class="fa-solid fa-forward-step"></i></button>
+<button class="skip" onclick="hideVideo()" id="skip" type="button">Skip <i class="fa-solid fa-forward-step"></i></button>
 
 <main>
   <div class="title-screen">
       <img id="eye" src="../../assets/eye.png"><h1>tHerE is n0 esc4p3</h1>
 
   </div>
+
+  <button type="buttom" onclick="showVideo()" class="show" id="show"><i class="fa-solid fa-backward-step"></i> Back</button>
 
   <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
     <div class="inlog">
