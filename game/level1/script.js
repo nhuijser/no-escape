@@ -35,7 +35,7 @@ function changeBrightness(factor, sprite) {
 }
 
 function displayVictoryMess() {
-  toggleVisablity("Message-Container");
+  toggleVisibility("Message-Container");
 }
 
 function toggleVisibility(id) {
@@ -307,7 +307,6 @@ function DrawMaze(Maze, ctx, cellsize, endSprite = null) {
   let halfCellSize = cellSize / 2;
 
   function drawFlashlight(coord, jumpscare) {
-    // If a jumpscare is not active, update the flashlight
     if (!jumpscareActive) {
       ctx.save();
 
@@ -502,9 +501,11 @@ function Player(maze, c, _cellsize, onComplete, sprite = null) {
     }
 
     // Draw the maze and player with updated coordinates
+
     draw.redrawMaze(cellSize, cellCoords);
     player.redrawPlayer(cellSize, cellCoords);
     document.getElementById("startMessage-Container").style.display = "none";
+    document.documentElement.requestFullscreen();
   }
 
   this.bindKeyDown = function () {
@@ -621,8 +622,8 @@ window.onresize = function () {
   }
   cellSize = mazeCanvas.width / size;
   if (player != null) {
-    draw.redrawMaze(cellSize);
-    player.redrawPlayer(cellSize);
+    draw.redrawMaze(cellSize, player.getPlayerCoords());
+    player.redrawPlayer(cellSize, player.getPlayerCoords());
   }
 };
 
