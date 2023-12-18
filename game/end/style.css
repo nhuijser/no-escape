@@ -39,16 +39,17 @@ section{
 }
 
 .overlay {
-    display: block; /* Initially hide the overlay */
-    position: fixed; /* Fixed position covering the entire viewport */
+    display: block;
+    position: fixed; 
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
-    z-index: 999; /* Ensure it's on top of other elements */
+    background-color: rgba(0, 0, 0, 0.7); 
+    z-index: 999; 
     text-align: center;
-    padding-top: 20%; /* Adjust this value to center content vertically */
+    padding-top: 20%;
+    backdrop-filter: blur(2px);
 }
 
 .overlay button {
