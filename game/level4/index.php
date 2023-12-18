@@ -6,9 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>InlogPage || tHerE is n0 esc4p3</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://kit.fontawesome.com/c6d023de9c.js" crossorigin="anonymous"></script> 
 </head>
 
 <body>
+<div id="fietsband">
+  <video width="100%" height="100%" autoplay="autoplay" onended="redirectToIndex()">
+  <source src="../../assets/fietsband.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+  </video>
+</div>
+<button class="skip" onclick="hideVideo()" id="skip" type="button">Overslaan <i class="fa-solid fa-forward-step"></i></button>
+
 <main>
   <div class="title-screen">
       <img id="eye" src="../../assets/eye.png"><h1>tHerE is n0 esc4p3</h1>

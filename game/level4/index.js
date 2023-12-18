@@ -7,3 +7,8 @@ function redirectToIndex() {
 
   
 }
+
+function hideVideo() {
+  document.getElementById('fietsband').style.display = 'none';
+  document.getElementById('skip').style.display = 'none';
+}
