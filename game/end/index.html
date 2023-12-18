@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="overlay" id="overlay">
+        <button type="button" onclick="playAudio();">claim prize</button>
+    </div>
+    <header>
+        <h1>congrats</h1>
+    </header>
+    <audio id="myAudio" >
+        <source src="/assets/mp3/jumpscare.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag.
+    </audio>
+    <section>
+        <div class="congrats">
+           <p>"Congratulations, brave soul. You've navigated the treacherous depths of fear and emerged victorious. The nightmares that once haunted these halls are now vanquished, thanks to your courage and resilience. As the darkness recedes, remember your triumph over terror, for you have conquered the shadows and claimed victory in this harrowing journey."</p>
+        </div>
+        <form action="aids.php">
+            <input type="submit">
+        </form>
+        </section>
+        <script src="index.js"></script>
+</body>
+</html>
