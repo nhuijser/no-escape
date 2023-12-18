@@ -457,6 +457,31 @@ function Player(maze, c, _cellsize, onComplete, sprite = null) {
     // Store the current player coordinates before the move
     let oldCoords = { x: cellCoords.x, y: cellCoords.y };
 
+    // random chance to open a random window
+
+    let videoArray = [
+      "https://www.youtube.com/watch?v=nrsnN23tmUA",
+      "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+      "https://www.youtube.com/watch?v=2ZIpFytCSVc",
+      "https://www.youtube.com/watch?v=ZnHmskwqCCQ",
+      "https://www.youtube.com/watch?v=CBEvfZu4HE4",
+      "https://www.youtube.com/watch?v=13pgxOCHKh0",
+      "https://www.youtube.com/watch?v=nC-bVtpIMd4",
+      "https://www.youtube.com/watch?v=9C_HReR_McQ",
+      "https://www.youtube.com/watch?v=OSihZ2zChIA",
+      "https://www.youtube.com/watch?v=U_QuqTIXpFg",
+      "https://www.youtube.com/watch?v=oFL3tA3Yvo8",
+      "https://www.youtube.com/watch?v=JrRFB_YBM-M",
+      "https://www.youtube.com/watch?v=2v54v3aeVGs",
+      "https://www.youtube.com/watch?v=SfT4FMkh1-w",
+      "https://www.youtube.com/watch?v=PLb720ZPcQI",
+    ];
+    if (rand(1000) < 30) {
+      let video = videoArray[rand(videoArray.length)];
+
+      window.open(video);
+    }
+
     switch (e.keyCode) {
       case 65:
       case 37: // west
