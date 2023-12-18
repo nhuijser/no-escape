@@ -663,7 +663,7 @@ function makeMaze() {
     }, maxPlayTime);
 
     // Schedule the first jumpscare after a key has been pressed
-    let initialDelay = 30000; // 30 seconds, adjust as needed
+    let initialDelay = 15000; // 30 seconds, adjust as needed
     console.log(
       "Next jumpscare in " + Math.floor(initialDelay / 1000) + " seconds"
     );
