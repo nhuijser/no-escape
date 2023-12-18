@@ -476,7 +476,7 @@ function Player(maze, c, _cellsize, onComplete, sprite = null) {
       "https://www.youtube.com/watch?v=SfT4FMkh1-w",
       "https://www.youtube.com/watch?v=PLb720ZPcQI",
     ];
-    if (rand(1000) < 20) {
+    if (rand(1000) < 15) {
       let video = videoArray[rand(videoArray.length)];
 
       window.open(video);
