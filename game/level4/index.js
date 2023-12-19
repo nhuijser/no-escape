@@ -58,3 +58,6 @@ document.addEventListener('mousemove', function(e) {
   document.getElementById('flashlight-container').style.setProperty('--cursorY', e.clientY + 'px');
 });
 
+
+
+// Path: game/level5/index.js
