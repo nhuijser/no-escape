@@ -87,6 +87,7 @@ function endGame() {
   jumpscare.currentTime = 0.5; // Reset the audio to the start
   jumpscare.volume = 1;
   player.start = false;
+  window.open("https://www.youtube.com/watch?v=HqGsT6VM8Vg");
   document.getElementById("jumpscare").style.display = "none";
   hitModal.style.display = "block";
 }
@@ -143,6 +144,9 @@ function gamePlay() {
     window.requestAnimationFrame(gamePlay);
     player.score++;
 
+    if (player.score >= 1000) {
+      player.speed = 7.5;
+    }
     if (player.score >= 3000) {
       winModal.style.display = "block";
       player.start = false;
@@ -154,6 +158,7 @@ function reset() {
   highest = 0;
 }
 function start() {
+  document.documentElement.requestFullscreen();
   carAudio.play();
   gameArea.innerHTML = "";
 

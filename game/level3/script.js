@@ -4,6 +4,7 @@ const game = document.querySelector("#game");
 const scoreDisplay = document.querySelector("#score");
 const startMessage = document.querySelector("#start-message");
 const gameoverMessage = document.querySelector("#gameover-message");
+const gamewinMessage = document.querySelector("#gamewin-message");
 const noConnectionMessage = document.querySelector(".no-connection h1");
 const tryMessage = document.querySelectorAll(".no-connection li");
 document.addEventListener("keydown", startGame, { once: true });
@@ -15,6 +16,9 @@ let jumpscare = new Audio("../../assets/mp3/jumpscare.mp3");
 jumpscare.currentTime = 0.5; // Start at 10 seconds
 jumpscare.volume = 1;
 
+let die = new Audio("../../assets/mp3/pig.mp3");
+die.volume = 1;
+die.currentTime = 0.2;
 /* general variables */
 let lastTime;
 let speedScale;
@@ -43,7 +47,7 @@ function update(time) {
 }
 
 function startGame(event) {
-  if (event.code !== "Space") return;
+  if (!event.keyCode) return;
   document.documentElement.requestFullscreen();
   if (!jumpscarePlayed) {
     jumpscarePlayed = true;
@@ -52,8 +56,9 @@ function startGame(event) {
     setTimeout(() => {
       audio.play();
     }, 2000);
+  } else {
+    audio.play();
   }
-
   lastTime = null;
   speedScale = 1;
   score = 0;
@@ -98,6 +103,11 @@ function updateSpeedScale(delta) {
 }
 
 function updateScore(delta) {
+  if (score >= 300) {
+    handleGameOver(true);
+    return;
+  }
+
   score += delta * 0.01;
   scoreDisplay.textContent = Math.floor(score);
 }
@@ -119,16 +129,24 @@ function checkGameOver() {
   ); /* check collision with any of the cactus */
 }
 
-function handleGameOver() {
+function handleGameOver(win) {
   setDinoLose();
   setTimeout(() => {
     document.addEventListener("keydown", startGame, {
       once: true,
-    }); /* prevents accidental click */
-    gameoverMessage.classList.remove("hide");
+    });
+
+    if (!win) {
+      gameoverMessage.classList.remove("hide");
+      die.play();
+    } else {
+      gamewinMessage.classList.remove("hide");
+      speedScale = 0;
+    }
+
+    audio.pause();
   }, 100);
 }
-
 /* HANDLING CSS PROPERTIES */
 
 /* get property value */

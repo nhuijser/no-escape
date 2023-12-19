@@ -104,6 +104,40 @@ body.game-started img {
   text-transform: none;
 }
 
+.gamewin-message {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 0.8rem;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.gamewin-message p {
+  letter-spacing: 0.5em;
+}
+
+.gamewin-message span {
+  font-size: 0.6rem;
+  text-transform: none;
+}
+
+#bring-me-back-button {
+  font-size: 2.3vh;
+  background: none;
+  border-radius: 1vh 1vh 1vh;
+  padding: 2vh;
+  border: none;
+  font-family: "Press Start 2P", cursive;
+}
+
+a {
+  text-decoration: none;
+  color: #616161;
+  cursor: pointer;
+}
+
 .ground {
   --left: 0;
   width: 300%;

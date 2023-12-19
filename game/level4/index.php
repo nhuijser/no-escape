@@ -124,6 +124,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (count($result) > 0) {
                 $_SESSION["level4"] = true;
                 header("location: /no-escape/game/end");
+
                 exit;
             } else {
                 echo '<div id="video-container">
