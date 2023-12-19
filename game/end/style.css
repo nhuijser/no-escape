@@ -23,17 +23,19 @@ header{
 section{
     display: flex;
     flex-direction: row;
-    height: 100vh;
+    height: fit-content;
+    background-color: rgba(0, 0, 0, 0.619);
+    backdrop-filter: blur(10px);
+    margin-top: 20vh;
 }
 
 .congrats{
     display: flex;
-    height: fit-content;
+
     color: lightgrey;
     margin-top:10%;
-    background-color: rgba(0, 0, 0, 0.619);
-    backdrop-filter: blur(10px);
-    padding: 2%;
+    margin: 5%;
+
     margin-right: auto;
     width: 30%;
 }
@@ -60,3 +62,55 @@ section{
     border-radius: 5px;
     cursor: pointer;
 }
+
+form{
+    color: white;
+    text-align: center;
+    margin-top: 5%;
+    margin-left: 40%;
+    width: 100%;
+}
+footer{
+    right: 0;
+    width: 100%;
+    position: absolute;
+        display: grid;
+        grid-template-columns: 33%  33%  33%;
+    margin-top: 20%; 
+    background-color: rgba(0, 0, 0, 0.452);
+    backdrop-filter: blur(10px);
+    color: white;
+    bottom: 0;
+    text-align: center;
+    height: fit-content;
+}
+ #y{
+grid-column: 1;
+color: white;
+ }
+
+ #yo{
+grid-column: 2;
+color: white;
+ }
+
+ #yoo{
+grid-column: 3;
+color: white;
+ }
+
+ .fa-brands{
+color: white;
+font-size: 200%;
+padding: 2%;
+ }
+
+ .fa-solid{
+    color: white;
+    font-size: 200%;
+    padding: 2%;
+ }
+ ul{
+    list-style-type: none;
+    
+ }
