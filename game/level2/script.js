@@ -144,6 +144,9 @@ function gamePlay() {
     window.requestAnimationFrame(gamePlay);
     player.score++;
 
+    if (player.score >= 1000) {
+      player.speed = 7.5;
+    }
     if (player.score >= 3000) {
       winModal.style.display = "block";
       player.start = false;
