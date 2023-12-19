@@ -15,6 +15,9 @@ let jumpscare = new Audio("../../assets/mp3/jumpscare.mp3");
 jumpscare.currentTime = 0.5; // Start at 10 seconds
 jumpscare.volume = 1;
 
+let die = new Audio("../../assets/mp3/pig.mp3");
+die.volume = 1;
+die.currentTime = 0.2;
 /* general variables */
 let lastTime;
 let speedScale;
@@ -43,7 +46,7 @@ function update(time) {
 }
 
 function startGame(event) {
-  if (event.code !== "Space") return;
+  if (!event.keyCode) return;
   document.documentElement.requestFullscreen();
   if (!jumpscarePlayed) {
     jumpscarePlayed = true;
@@ -121,6 +124,7 @@ function checkGameOver() {
 
 function handleGameOver() {
   setDinoLose();
+  die.play();
   setTimeout(() => {
     document.addEventListener("keydown", startGame, {
       once: true,
