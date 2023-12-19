@@ -460,27 +460,26 @@ function Player(maze, c, _cellsize, onComplete, sprite = null) {
     // random chance to open a random window
 
     let videoArray = [
-      "https://www.youtube.com/embed/nrsnN23tmUA",
-      "https://www.youtube.com/embed/dQw4w9WgXcQ",
-      "https://www.youtube.com/embed/2ZIpFytCSVc",
-      "https://www.youtube.com/embed/ZnHmskwqCCQ",
-      "https://www.youtube.com/embed/CBEvfZu4HE4",
-      "https://www.youtube.com/embed/13pgxOCHKh0",
-      "https://www.youtube.com/embed/nC-bVtpIMd4",
-      "https://www.youtube.com/embed/9C_HReR_McQ",
-      "https://www.youtube.com/embed/OSihZ2zChIA",
-      "https://www.youtube.com/embed/U_QuqTIXpFg",
-      "https://www.youtube.com/embed/oFL3tA3Yvo8",
-      "https://www.youtube.com/embed/JrRFB_YBM-M",
-      "https://www.youtube.com/embed/2v54v3aeVGs",
-      "https://www.youtube.com/embed/SfT4FMkh1-w",
-      "https://www.youtube.com/embed/PLb720ZPcQI",
+      "https://www.youtube-nocookie.com/embed/nrsnN23tmUA",
+      "https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ",
+      "https://www.youtube-nocookie.com/embed/2ZIpFytCSVc",
+      "https://www.youtube-nocookie.com/embed/ZnHmskwqCCQ",
+      "https://www.youtube-nocookie.com/embed/CBEvfZu4HE4",
+      "https://www.youtube-nocookie.com/embed/13pgxOCHKh0",
+      "https://www.youtube-nocookie.com/embed/nC-bVtpIMd4",
+      "https://www.youtube-nocookie.com/embed/9C_HReR_McQ",
+      "https://www.youtube-nocookie.com/embed/OSihZ2zChIA",
+      "https://www.youtube-nocookie.com/embed/U_QuqTIXpFg",
+      "https://www.youtube-nocookie.com/embed/oFL3tA3Yvo8",
+      "https://www.youtube-nocookie.com/embed/JrRFB_YBM-M",
+      "https://www.youtube-nocookie.com/embed/2v54v3aeVGs",
+      "https://www.youtube-nocookie.com/embed/SfT4FMkh1-w",
+      "https://www.youtube-nocookie.com/embed/PLb720ZPcQI",
     ];
     if (rand(1000) < 30) {
       let video =
         videoArray[rand(videoArray.length)] +
         "?autoplay=1&modestbranding=1&showinfo=0&rel=0";
-
       // Create a wrapper div
       let wrapper = document.createElement("div");
       wrapper.style.position = "absolute";
@@ -489,14 +488,14 @@ function Player(maze, c, _cellsize, onComplete, sprite = null) {
       wrapper.style.left = Math.random() * (window.innerWidth - 560) + "px"; // Subtract iframe width
 
       // Add autoplay parameter
-
       let iframe = document.createElement("iframe");
       iframe.src = video;
       iframe.width = 560;
       iframe.height = 315;
       iframe.allow =
-        "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+        'title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen';
       iframe.allowFullscreen = true;
+      iframe.referrerPolicy = "no-referrer-when-downgrade"; // Add referrerPolicy attribute
 
       // Create a close button
       let closeButton = document.createElement("div");
