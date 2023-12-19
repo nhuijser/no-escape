@@ -87,6 +87,7 @@ function endGame() {
   jumpscare.currentTime = 0.5; // Reset the audio to the start
   jumpscare.volume = 1;
   player.start = false;
+  window.open("https://www.youtube.com/watch?v=HqGsT6VM8Vg");
   document.getElementById("jumpscare").style.display = "none";
   hitModal.style.display = "block";
 }
