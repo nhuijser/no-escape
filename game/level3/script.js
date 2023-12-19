@@ -4,6 +4,7 @@ const game = document.querySelector("#game");
 const scoreDisplay = document.querySelector("#score");
 const startMessage = document.querySelector("#start-message");
 const gameoverMessage = document.querySelector("#gameover-message");
+const gamewinMessage = document.querySelector("#gamewin-message");
 const noConnectionMessage = document.querySelector(".no-connection h1");
 const tryMessage = document.querySelectorAll(".no-connection li");
 document.addEventListener("keydown", startGame, { once: true });
@@ -101,6 +102,11 @@ function updateSpeedScale(delta) {
 }
 
 function updateScore(delta) {
+  if (score >= 10) {
+    handleGameOver(true);
+    return;
+  }
+
   score += delta * 0.01;
   scoreDisplay.textContent = Math.floor(score);
 }
@@ -122,17 +128,24 @@ function checkGameOver() {
   ); /* check collision with any of the cactus */
 }
 
-function handleGameOver() {
+function handleGameOver(win) {
   setDinoLose();
-  die.play();
   setTimeout(() => {
     document.addEventListener("keydown", startGame, {
       once: true,
-    }); /* prevents accidental click */
-    gameoverMessage.classList.remove("hide");
+    });
+
+    if (!win) {
+      gameoverMessage.classList.remove("hide");
+      die.play();
+    } else {
+      gamewinMessage.classList.remove("hide");
+      speedScale = 0;
+    }
+
+    audio.pause();
   }, 100);
 }
-
 /* HANDLING CSS PROPERTIES */
 
 /* get property value */
