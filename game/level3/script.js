@@ -102,7 +102,7 @@ function updateSpeedScale(delta) {
 }
 
 function updateScore(delta) {
-  if (score >= 10) {
+  if (score >= 1000) {
     handleGameOver(true);
     return;
   }
