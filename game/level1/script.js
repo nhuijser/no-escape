@@ -666,7 +666,7 @@ function makeMaze() {
 
   let audio = new Audio("../../assets/mp3/help.mp3");
   audio.loop = true;
-  audio.volume = 0.4;
+  audio.volume = 0.2;
 
   let keyPressed = false;
 
