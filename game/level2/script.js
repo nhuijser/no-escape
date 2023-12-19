@@ -158,6 +158,7 @@ function reset() {
   highest = 0;
 }
 function start() {
+  document.documentElement.requestFullscreen();
   carAudio.play();
   gameArea.innerHTML = "";
 
