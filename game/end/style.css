@@ -33,10 +33,7 @@ section{
     display: flex;
 
     color: lightgrey;
-    margin-top:10%;
-    margin: 5%;
-
-    margin-right: auto;
+    margin: 1%;
     width: 30%;
 }
 
@@ -66,8 +63,7 @@ section{
 form{
     color: white;
     text-align: center;
-    margin-top: 5%;
-    margin-left: 40%;
+    margin-top: 2%;
     width: 100%;
 }
 footer{
@@ -83,6 +79,7 @@ footer{
     bottom: 0;
     text-align: center;
     height: fit-content;
+    margin-top: 5%;
 }
  #y{
 grid-column: 1;
@@ -114,3 +111,14 @@ padding: 2%;
     list-style-type: none;
     
  }
+
+ #knolpower{
+    margin-top: 12%;
+ }
+img{
+    width: 600px;
+    height: 300px;
+    align-self: center;
+    justify-self: center;
+    margin-left: 10%;
+}
