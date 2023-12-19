@@ -56,8 +56,9 @@ function startGame(event) {
     setTimeout(() => {
       audio.play();
     }, 2000);
+  } else {
+    audio.play();
   }
-
   lastTime = null;
   speedScale = 1;
   score = 0;
@@ -102,7 +103,7 @@ function updateSpeedScale(delta) {
 }
 
 function updateScore(delta) {
-  if (score >= 500) {
+  if (score >= 300) {
     handleGameOver(true);
     return;
   }
