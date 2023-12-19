@@ -479,7 +479,7 @@ function Player(maze, c, _cellsize, onComplete, sprite = null) {
     if (rand(1000) < 30) {
       let video =
         videoArray[rand(videoArray.length)] +
-        "?autoplay=1&modestbranding=1&showinfo=0&rel=0";
+        "?autoplay=1&modestbranding=1&showinfo=0&rel=0&controls=0"; // Add controls=0 parameter
       // Create a wrapper div
       let wrapper = document.createElement("div");
       wrapper.style.position = "absolute";
