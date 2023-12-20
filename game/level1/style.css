@@ -3,6 +3,7 @@
 
 * {
   transition: 0.5s;
+  cursor: url("../../assets/cursor/Bloody\ Cursor.cur"), auto;
 }
 
 html,
