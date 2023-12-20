@@ -176,10 +176,10 @@ function gamePlay() {
     window.requestAnimationFrame(gamePlay);
     player.score++;
     if (player.speed <= 9) {
-      player.speed = 3.5 + player.score * 0.005;
+      player.speed = 3.5 + player.score * 0.0043;
     }
     if (otherSpeed <= 20) {
-      otherSpeed = 4.5 + player.score * 0.005;
+      otherSpeed = 4.5 + player.score * 0.0043;
     }
 
     if (player.score >= 3000) {
