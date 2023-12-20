@@ -27,3 +27,12 @@ Start the server using the Live Server extension or anything of your choice.
 - [@HiddeWierper](https://www.github.com/hiddewierper)
 - [@DelanoKano](https://www.github.com/delanokano)
 - [@nicole2a](https://www.github.com/nicole2a)
+
+## With help of
+
+- [Maze Game](https://github.com/devression/Maze-Game)
+- [Race Game](https://github.com/DeepNinja07x/Car-Racing-Game)
+- [Dino Game](https://github.com/wasimreja/chrome-dino-game)
+
+These games were all modified to make them creepy, huge thanks to these creators.
+  
