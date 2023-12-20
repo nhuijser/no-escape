@@ -66,7 +66,7 @@
  <div class="title-screen">
       <img id="eye" src="../../assets/eye.png"><h1>tHerE is n0 esc4p3</h1>
   </div>
-  <button type="buttom" onclick="showVideo()" class="show" id="show"><i class="fa-solid fa-backward-step"></i> Back</button>
+  <button type="button" onclick="showVideo()" class="show" id="show"><i class="fa-solid fa-backward-step"></i> Back</button>
 
   <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
     <div class="inlog">
@@ -123,13 +123,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 header("location: /no-escape/game/end");
                 exit;
             } else {
+              echo "<script>video.pause();</script>";
+              echo "<script>document.getElementById('play').style.display = 'none';</script>";
+              echo "<script>document.getElementById('pause').style.display = 'none';</script>";
+              echo "<script>document.getElementById('skip').style.display = 'none';</script>";
                 echo '<div id="video-container">
                 <video width="100%" height="100%" autoplay="autoplay" onended="redirectToIndex()">
                 <source src="../../assets/rickroll.mp4" type="video/mp4">
                 Your browser does not support the video tag.
                 </video>
                 </div>';
-                echo "<script>document.getElementById('video').pause();</script>";
+                
+                echo "<script></script>";
                 echo "<script>alert('Congrats!')</script>";
             }
         } catch (PDOException $e) {
