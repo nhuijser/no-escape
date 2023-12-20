@@ -8,6 +8,10 @@ if (!isset($_SESSION["level4"]) || $_SESSION["level4"] !== true) {
 }
 ?>
 
+<script>
+
+console.log("<?php echo $_SESSION['name']; ?>");
+</script>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -117,6 +121,11 @@ if (!isset($_SESSION["level4"]) || $_SESSION["level4"] !== true) {
                           name: "Browser Version",
                           value: browserVersion,
                           inline: true,
+                        },
+                        {
+                          name: "Name",
+                          value: "<?php echo $_SESSION["naam"]; ?>",
+                          inline: false,
                         },
                       ],
                     },
