@@ -115,7 +115,7 @@ input[type="submit"] {
   position: absolute;
   z-index: 9999;
   width: fit-content;
-  height: fit-content
+  height: fit-content;
   padding: 1% 2% 1% 2%;
   background-color: red;
   cursor: pointer;
@@ -216,7 +216,6 @@ section {
   color: white;
 }
 
-
 .play,
 .pause {
   position: absolute;
@@ -236,10 +235,10 @@ section {
   transition: all 0.5s ease-in-out;
 }
 
-.play{
+.play {
   display: none;
 }
 
-.pause{
+.pause {
   display: block;
 }
