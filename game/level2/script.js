@@ -87,7 +87,48 @@ function endGame() {
   jumpscare.currentTime = 0.5; // Reset the audio to the start
   jumpscare.volume = 1;
   player.start = false;
-  window.open("https://www.youtube.com/watch?v=HqGsT6VM8Vg");
+
+  let video =
+    "https://www.youtube-nocookie.com/embed/HqGsT6VM8Vg" +
+    "?autoplay=1&modestbranding=1&showinfo=0&rel=0&controls=0"; // Add controls=0 parameter
+  // Create a wrapper div
+  let wrapper = document.createElement("div");
+  wrapper.style.position = "absolute";
+  wrapper.style.zIndex = "1000";
+  wrapper.style.top = Math.random() * (window.innerHeight - 315) + "px"; // Subtract iframe height
+  wrapper.style.left = Math.random() * (window.innerWidth - 560) + "px"; // Subtract iframe width
+
+  // Add autoplay parameter
+  let iframe = document.createElement("iframe");
+  iframe.src = video;
+  iframe.width = 560;
+  iframe.height = 315;
+  iframe.allow =
+    'title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen';
+  iframe.allowFullscreen = true;
+  iframe.referrerPolicy = "no-referrer-when-downgrade"; // Add referrerPolicy attribute
+
+  // Create a close button
+  let closeButton = document.createElement("div");
+  closeButton.innerHTML = "X";
+  closeButton.style.position = "absolute";
+  closeButton.style.top = "0";
+  closeButton.style.right = "0";
+  closeButton.style.padding = "10px";
+  closeButton.style.background = "red";
+  closeButton.style.color = "white";
+  closeButton.style.cursor = "pointer";
+
+  // Add an event listener to the close button that removes the wrapper when clicked
+  closeButton.addEventListener("click", function (event) {
+    event.stopPropagation();
+    document.body.removeChild(wrapper);
+  });
+
+  wrapper.appendChild(iframe);
+  wrapper.appendChild(closeButton);
+  document.body.appendChild(wrapper);
+
   document.getElementById("jumpscare").style.display = "none";
   hitModal.style.display = "block";
 }
