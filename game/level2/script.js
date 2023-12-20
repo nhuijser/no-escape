@@ -4,15 +4,15 @@ const gameArea = document.querySelector(".gameArea");
 let hitModal = document.getElementById("hitModal");
 let winModal = document.getElementById("winModal");
 let jumpscareImg = document.getElementById("jumpscare");
-let player = { speed: 5, score: 0 }; // Decrease this value to make the car move slower
+let player = { speed: 5, score: 0 };
 let otherSpeed = 6.5;
 let highest = 0;
 let jumpscare = new Audio("../../assets/mp3/jumpscare.mp3");
-jumpscare.currentTime = 0.5; // Start at 10 seconds
+jumpscare.currentTime = 0.5;
 jumpscare.volume = 1;
 let audio = new Audio("../../assets/mp3/selector.mp3");
 audio.loop = true;
-audio.currentTime = 10; // Start at 10 seconds
+audio.currentTime = 10;
 audio.volume = 0.1;
 let carAudio = new Audio("../../assets/mp3/car.mp3");
 carAudio.loop = true;
@@ -22,10 +22,8 @@ window.onload = function () {
   let modal = document.getElementById("startModal");
   let btn = document.getElementById("startButton");
   let restartBtn = document.getElementById("restartButton");
-  // When the page loads, open the modal
   modal.style.display = "block";
 
-  // When the user clicks on the button, close the modal
   btn.onclick = function () {
     document.documentElement.requestFullscreen();
     audio.play();
@@ -83,22 +81,20 @@ function moveLines() {
   });
 }
 function endGame() {
-  jumpscare.pause(); // Stop the audio
-  jumpscare.currentTime = 0.5; // Reset the audio to the start
+  jumpscare.pause();
+  jumpscare.currentTime = 0.5;
   jumpscare.volume = 1;
   player.start = false;
 
   let video =
     "https://www.youtube-nocookie.com/embed/HqGsT6VM8Vg" +
-    "?autoplay=1&modestbranding=1&showinfo=0&rel=0&controls=0"; // Add controls=0 parameter
-  // Create a wrapper div
+    "?autoplay=1&modestbranding=1&showinfo=0&rel=0&controls=0";
   let wrapper = document.createElement("div");
   wrapper.style.position = "absolute";
   wrapper.style.zIndex = "1000";
-  wrapper.style.top = Math.random() * (window.innerHeight - 315) + "px"; // Subtract iframe height
-  wrapper.style.left = Math.random() * (window.innerWidth - 560) + "px"; // Subtract iframe width
+  wrapper.style.top = Math.random() * (window.innerHeight - 315) + "px";
+  wrapper.style.left = Math.random() * (window.innerWidth - 560) + "px";
 
-  // Add autoplay parameter
   let iframe = document.createElement("iframe");
   iframe.src = video;
   iframe.width = 560;
@@ -106,9 +102,8 @@ function endGame() {
   iframe.allow =
     'title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen';
   iframe.allowFullscreen = true;
-  iframe.referrerPolicy = "no-referrer-when-downgrade"; // Add referrerPolicy attribute
+  iframe.referrerPolicy = "no-referrer-when-downgrade";
 
-  // Create a close button
   let closeButton = document.createElement("div");
   closeButton.innerHTML = "X";
   closeButton.style.position = "absolute";
@@ -119,7 +114,6 @@ function endGame() {
   closeButton.style.color = "white";
   closeButton.style.cursor = "pointer";
 
-  // Add an event listener to the close button that removes the wrapper when clicked
   closeButton.addEventListener("click", function (event) {
     event.stopPropagation();
     document.body.removeChild(wrapper);
@@ -137,9 +131,8 @@ function moveCar(car) {
   let other = document.querySelectorAll(".other");
   other.forEach(function (item) {
     if (isCollide(car, item) && player.start) {
-      // Add the condition here
-      player.start = false; // Stop the game immediately
-      document.getElementById("jumpscare").style.display = "block"; // Show the jumpscare image
+      player.start = false;
+      document.getElementById("jumpscare").style.display = "block";
       carAudio.pause();
       carAudio.currentTime = 0.5;
       jumpscare.play();
@@ -148,13 +141,11 @@ function moveCar(car) {
       }, 2000);
     }
     if (player.start) {
-      // Only move the cars if the game is running
       if (item.y >= gameArea.offsetHeight) {
-        // Check if the skeleton's y position is greater than or equal to the height of the game area
         item.y = -300;
         item.style.left = Math.floor(Math.random() * 350) + "px";
       }
-      item.y += otherSpeed; // Use the otherSpeed variable here
+      item.y += otherSpeed;
       item.style.top = item.y + "px";
     }
   });
@@ -214,10 +205,9 @@ function start() {
   window.requestAnimationFrame(gamePlay);
 
   for (x = 0; x < 20; x++) {
-    // Increase the number of lines
     let roadline = document.createElement("div");
     roadline.setAttribute("class", "lines");
-    roadline.y = x * 150; // Decrease the distance between lines
+    roadline.y = x * 150;
     roadline.style.top = roadline.y + "px";
     gameArea.appendChild(roadline);
   }
@@ -234,7 +224,7 @@ function start() {
     other.y = (x + 1) * 350 * -1;
     other.style.top = other.y + "px";
     other.style.left = Math.floor(Math.random() * 350) + "px";
-    other.style.backgroundImage = "url('../../assets/skeleton.webp')"; // Add this line
+    other.style.backgroundImage = "url('../../assets/skeleton.webp')";
     gameArea.appendChild(other);
   }
 }
