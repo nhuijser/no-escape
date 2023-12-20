@@ -16,6 +16,7 @@
         <h2>DISCLAIMER ⚠️</h2>
         <p>THIS WEBSITE MAY BE DISRUPTIVE.</p>
         <p>PROCEED WITH CAUTION!</p>
+        <p>Please fill in your name for gameplay purposes.</p>
         <input type="text" name="name" id="name" placeholder="put your name here" required>
         <button id="acceptButton">I understand</button>
       </div>
