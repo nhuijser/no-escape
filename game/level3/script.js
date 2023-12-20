@@ -13,13 +13,12 @@ audio.loop = true;
 audio.volume = 0.8;
 
 let jumpscare = new Audio("../../assets/mp3/jumpscare.mp3");
-jumpscare.currentTime = 0.5; // Start at 10 seconds
+jumpscare.currentTime = 0.5;
 jumpscare.volume = 1;
 
 let die = new Audio("../../assets/mp3/pig.mp3");
 die.volume = 1;
 die.currentTime = 0.2;
-/* general variables */
 let lastTime;
 let speedScale;
 let score;
@@ -73,7 +72,6 @@ function startGame(event) {
   tryMessage[1].innerText = "You won't beat it.";
   tryMessage[2].innerText = "Goodluck";
 
-  // Add these lines
   var imageNames = [
     "cactus",
     "dino-lose",
@@ -112,7 +110,6 @@ function updateScore(delta) {
   scoreDisplay.textContent = Math.floor(score);
 }
 
-/* collision conditions */
 function checkCollision(rect1, rect2) {
   return (
     rect1.left < rect2.right &&
@@ -124,9 +121,7 @@ function checkCollision(rect1, rect2) {
 
 function checkGameOver() {
   const dinoRect = getDinoRect();
-  return getCactusRects().some((rect) =>
-    checkCollision(rect, dinoRect)
-  ); /* check collision with any of the cactus */
+  return getCactusRects().some((rect) => checkCollision(rect, dinoRect));
 }
 
 function handleGameOver(win) {
@@ -180,7 +175,7 @@ function updateGround(delta, speedScale) {
       ground,
       "--left",
       delta * speedScale * GROUND_SPEED * -1
-    ); /* moves the ground according to game speed */
+    );
 
     if (getCustomProperty(ground, "--left") <= -300) {
       incrementCustomProperty(ground, "--left", 600); /* loop the elements */
@@ -236,7 +231,7 @@ function handleRun(delta, speedScale) {
 
   if (currentFrameTime >= FRAME_TIME) {
     dinoFrame = (dinoFrame + 1) % DINO_FRAME_COUNT;
-    dino.src = `../../assets/dino-run-${dinoFrame}-dark.png`; /* switch between images to simulate movement */
+    dino.src = `../../assets/dino-run-${dinoFrame}-dark.png`;
     currentFrameTime -= FRAME_TIME;
   }
   currentFrameTime += delta * speedScale;
@@ -273,7 +268,7 @@ let nextCactusTime;
 function setupCactus() {
   nextCactusTime = CACTUS_INTERVAL_MIN;
   document.querySelectorAll(".cactus").forEach((cactus) => {
-    cactus.remove(); /* remove cactus when game restart */
+    cactus.remove();
   });
 }
 
@@ -285,7 +280,7 @@ function updateCactus(delta, speedScale) {
       delta * speedScale * CACTUS_SPEED * -1
     );
     if (getCustomProperty(cactus, "--left") <= -100) {
-      cactus.remove(); /* remove cactus off screen so it doesn't impair game performance */
+      cactus.remove();
     }
   });
 
@@ -299,7 +294,7 @@ function updateCactus(delta, speedScale) {
 
 function getCactusRects() {
   return [...document.querySelectorAll(".cactus")].map((cactus) => {
-    return cactus.getBoundingClientRect(); /* get the hitbox of all the cactus on the screen */
+    return cactus.getBoundingClientRect();
   });
 }
 
@@ -312,7 +307,5 @@ function createCactus() {
 }
 
 function randomizer(min, max) {
-  return Math.floor(
-    Math.random() * (max - min + 1) + min
-  ); /* choose a number between minimum and maximum */
+  return Math.floor(Math.random() * (max - min + 1) + min);
 }
