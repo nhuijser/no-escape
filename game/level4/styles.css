@@ -1,10 +1,9 @@
-
 @import url("https://fonts.googleapis.com/css2?family=Amatic+SC&display=swap");
 
 * {
-  font-family: 'Amatic SC', sans-serif;
+  font-family: "Amatic SC", sans-serif;
+  cursor: url("../../assets/cursor/Bloody\ Cursor.cur"), auto;
 }
-
 
 body {
   background-color: black;
@@ -39,13 +38,12 @@ main {
   color: red;
   font-size: 1.5rem;
 }
-#user{
+#user {
   color: red;
   font-size: 4rem;
-
 }
 
-input{
+input {
   color: red;
   font-size: 4rem;
   background-color: black;
@@ -55,7 +53,7 @@ input{
   margin: 0.5rem;
 }
 
-input:focus{
+input:focus {
   outline: none;
   background-color: black;
 }
@@ -75,9 +73,9 @@ input[type="submit"] {
   margin: 0.5rem;
   font-size: 1.5rem;
   cursor: pointer;
-} 
+}
 
-.video{
+.video {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -85,7 +83,8 @@ input[type="submit"] {
   z-index: 1002;
 }
 
-#video-container, #fietsband {
+#video-container,
+#fietsband {
   position: fixed;
   top: 0;
   left: 0;
@@ -95,7 +94,7 @@ input[type="submit"] {
   visibility: visible;
 }
 
-.skip{ 
+.skip {
   position: absolute;
   z-index: 9999;
   width: 10%;
@@ -106,12 +105,12 @@ input[type="submit"] {
   right: 5%;
   font-size: 1.7rem;
   border: none;
-  font-family:comic sans ms;
+  font-family: comic sans ms;
   border-radius: 30px;
   cursor: pointer;
-  transition: all 0.5s ease-in-out;   
+  transition: all 0.5s ease-in-out;
 }
-.show{
+.show {
   position: absolute;
   z-index: 9999;
   width: 10%;
@@ -123,30 +122,29 @@ input[type="submit"] {
   left: 5%;
   font-size: 1.7rem;
   border: none;
-  font-family:comic sans ms;
+  font-family: comic sans ms;
   border-radius: 30px;
   display: none;
 }
 
-.skip:hover{
+.skip:hover {
   background-color: rgba(54, 52, 52, 0.8);
-  transition: all 0.5s ease-in-out; 
+  transition: all 0.5s ease-in-out;
 }
 
-
-
-option{
+option {
   font-size: larger;
   font-family: comic sans ms;
 }
 
-form h3, p{
+form h3,
+p {
   text-align: center;
   font-family: comic sans ms;
   color: black;
 }
 
-form.questions{
+form.questions {
   background-color: rgb(238, 42, 42);
   box-shadow: 0px 0px 110px red;
   padding: 3%;
@@ -163,7 +161,7 @@ form.questions{
   height: fit-content;
 }
 
-form.questions input[type="text"]{
+form.questions input[type="text"] {
   background-color: transparent;
   border: 2px solid black;
   border-radius: 10px;
@@ -176,15 +174,14 @@ form.questions input[type="text"]{
   text-align: center;
 }
 
-form.questions label{
+form.questions label {
   font-size: larger;
   font-family: comic sans ms;
   color: black;
-  text-align: center  ;
-  }
+  text-align: center;
+}
 
-
-select{
+select {
   font-size: larger;
   font-family: comic sans ms;
   color: white;
@@ -195,16 +192,17 @@ select{
   margin: 0.5rem;
 }
 
-select:focus{
+select:focus {
   outline: none;
   background-color: transparent;
 }
 
-button.skip, button.show{
+button.skip,
+button.show {
   position: fixed;
 }
 
-section{
+section {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -212,7 +210,7 @@ section{
   margin: auto;
 }
 
-.hidden{
+.hidden {
   position: absolute;
   color: white;
 }
