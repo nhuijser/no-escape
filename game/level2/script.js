@@ -143,15 +143,18 @@ function gamePlay() {
 
     window.requestAnimationFrame(gamePlay);
     player.score++;
-
-    if (player.score >= 1000) {
-      player.speed = 7.5;
+    if (player.speed <= 9) {
+      player.speed = 5.5 + player.score * 0.005;
     }
+    if (otherSpeed <= 20) {
+      otherSpeed = 7.5 + player.score * 0.005;
+    }
+
     if (player.score >= 3000) {
       winModal.style.display = "block";
       player.start = false;
     }
-    score.innerText = "Your score:" + player.score;
+    score.innerText = "Your score: " + player.score;
   }
 }
 function reset() {
