@@ -3,6 +3,10 @@
   <head>
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <title>Level Selection</title>
+    <meta content="n0 esc4p3" property="og:title" />
+    <meta content="A web horror game..." property="og:description" />
+    <meta content="https://thuis.wierper.net/no-escape" property="og:url" />
+    <meta content="#43B581" data-react-helmet="true" name="theme-color" />
     <meta charset="utf-8" />
     <link rel="stylesheet" type="text/css" href="styles.css" />
   </head>
