@@ -477,7 +477,7 @@ function Player(maze, c, _cellsize, onComplete, sprite = null) {
       "https://www.youtube-nocookie.com/embed/PLb720ZPcQI",
       "https://www.youtube-nocookie.com/embed/V-XZcgDkO9o",
     ];
-    if (rand(1000) < 20) {
+    if (rand(1000) < 17.5) {
       let video =
         videoArray[rand(videoArray.length)] +
         "?autoplay=1&modestbranding=1&showinfo=0&rel=0&controls=0"; // Add controls=0 parameter
