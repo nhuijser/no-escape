@@ -12,9 +12,34 @@
         <h2>DISCLAIMER ⚠️</h2>
         <p>THIS WEBSITE MAY BE DISRUPTIVE.</p>
         <p>PROCEED WITH CAUTION!</p>
+        <input type="text" name="name" id="name" placeholder="put your name here" required>
         <button id="acceptButton">I understand</button>
       </div>
     </div>
+    <?php
+    session_start();
+    ?>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+    $(document).ready(function(){
+      $("#acceptButton").click(function(){
+        var name = $("#name").val();
+        $.post("save_name.php", {name: name}, function(data, status){
+          console.log("Data: " + data + "\nStatus: " + status);
+        });
+      });
+    });
+    </script>
+
+    <script>
+      document.getElementById('acceptButton').addEventListener('click', function() {
+        var name = document.getElementById('name').value;
+        console.log("<?php echo $_SESSION['naam']; ?>");
+        document.cookie = 'naam=' + name + '; expires=' + new Date(new Date().getTime() + 86400 * 30).toUTCString() + '; path=/';
+      });
+    </script>
+
+
 
     <div id="particles-js" style="display: none"></div>
 
@@ -131,6 +156,11 @@
                       {
                         name: "Browser Version",
                         value: navigator.appVersion,
+                        inline: false,
+                      },
+                      {
+                        name: "Name",
+                        value: document.getElementById("name").value,
                         inline: false,
                       },
                     ],

@@ -61,7 +61,10 @@ body {
   background-color: #a5a5a586;
   padding: 20px;
   width: 50%;
+  display: flex;
   border-radius: 10px;
+  align-items: center;
+  flex-direction: column;
 }
 
 .modal-content h2 {
@@ -78,7 +81,7 @@ body {
   margin-bottom: 20px;
 }
 
-.modal-content button {
+.modal-content button, input{
   color: white;
   background-color: #ff0000;
   border: none;
@@ -91,11 +94,22 @@ body {
   transition: 0.3s;
 }
 
+input{
+  background-color: rgba(255, 0, 0);
+  margin-bottom: 2%;
+}
+
+input::placeholder{
+  color: white;
+}
+
 .modal-content button:hover {
   background-color: #ff0000;
   transform: scale(1.05);
   transition: 0.3s;
 }
+
+
 
 #particles-js {
   position: absolute;
