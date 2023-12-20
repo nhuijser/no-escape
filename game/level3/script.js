@@ -140,11 +140,11 @@ function handleGameOver(win) {
       gameoverMessage.classList.remove("hide");
       die.play();
     } else {
-      gamewinMessage.classList.remove("hide");
       speedScale = 0;
-    }
 
-    audio.pause();
+      gamewinMessage.classList.remove("hide");
+      audio.pause();
+    }
   }, 100);
 }
 /* HANDLING CSS PROPERTIES */
