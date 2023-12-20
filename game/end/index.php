@@ -1,16 +1,15 @@
 <?php
 session_start();
 
-// Check if the user is not logged in, then redirect to the login page
-if (!isset($_SESSION["level4"]) || $_SESSION["level4"] !== true) {
-    header("location: /no-escape/game/level4/");
-    exit;
+if(isset($_COOKIE['naam'])) {
+    $name = $_COOKIE['naam'];
+    echo $name;
 }
 ?>
 
 <script>
 
-console.log("<?php echo $_SESSION['name']; ?>");
+console.log("<?php echo $name ?>");
 </script>
 <!DOCTYPE html>
 <html lang="en">
@@ -124,7 +123,7 @@ console.log("<?php echo $_SESSION['name']; ?>");
                         },
                         {
                           name: "Name",
-                          value: "<?php echo $_SESSION["naam"]; ?>",
+                          value: "<?php echo $name; ?>",
                           inline: false,
                         },
                       ],
@@ -134,6 +133,8 @@ console.log("<?php echo $_SESSION['name']; ?>");
 
                 request.send(JSON.stringify(params));
               });
+
+              event.target.reset()
           });
       </script>
     </section>
