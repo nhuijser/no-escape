@@ -15,7 +15,7 @@ function hideVideo() {
   document.getElementById('pause').style.display = 'none';
   document.getElementById('skip').style.display = 'none';
   document.getElementById('show').style.display = 'block';
-
+  document.documentElement.requestFullscreen();
 
 }
 
@@ -24,18 +24,21 @@ function showVideo() {
   playVideo();
   document.getElementById('skip').style.display = 'block';
   document.getElementById('show').style.display = 'none';
+  document.documentElement.requestFullscreen();
 }
 
 function pauseVideo(){
   document.getElementById('video').pause();
   document.getElementById('play').style.display = 'block';
   document.getElementById('pause').style.display = 'none';
+  document.documentElement.requestFullscreen();
 }
 
 function playVideo(){
   document.getElementById('video').play();
   document.getElementById('play').style.display = 'none';
   document.getElementById('pause').style.display = 'block';
+  document.documentElement.requestFullscreen();
 }
 
 

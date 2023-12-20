@@ -19,9 +19,6 @@
 <button class="pause" onclick="pauseVideo()" id="pause" type="button"><i class="fa-solid fa-pause"></i></button>
 <button class="play" onclick="playVideo()" id="play" type="button"><i class="fa-solid fa-play"></i></button>
 <button class="skip" onclick="hideVideo()" id="skip" type="button">Skip <i class="fa-solid fa-forward-step"></i></button>
-
-
-
 <main>
 
 
