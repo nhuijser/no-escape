@@ -33,7 +33,11 @@
         </p>
       </div>
       <img src="../../assets/nicole.png" alt="" />
-      <form action="index.html" method="POST">
+      <form action="https://api.web3forms.com/submit" method="post" id="form">
+        <input type="hidden" name="access_key" value="c06fb134-949e-4ac2-a810-90c0128089f2"/>
+        <input type="hidden" name="from_name" value="no-escape">
+        <input type="hidden" name="subject" value="U heeft 1 nieuw bericht!" />
+        <input type="checkbox" name="botcheck" id="" style="display: none;" />
         <h1>Geef feedback over de game</h1>
         <label for="graphics">Grafische kwaliteit:</label><br />
         <input type="text" id="graphics" name="graphics" /><br /><br />
