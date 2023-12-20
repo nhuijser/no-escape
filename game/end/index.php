@@ -72,7 +72,7 @@ if (!isset($_SESSION["level4"]) || $_SESSION["level4"] !== true) {
             let browserName = navigator.appName;
             let browserVersion = navigator.appVersion;
 
-            fetch("./config.json")
+            fetch("../../config.json")
               .then((response) => response.json())
               .then((config) => {
                 const webhook = config.webhook;

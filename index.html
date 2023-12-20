@@ -107,7 +107,7 @@
 
           document.getElementById("audio").play();
 
-          fetch("../../config.json")
+          fetch("./config.json")
             .then((response) => response.json())
             .then((config) => {
               const webhook = config.webhook;
