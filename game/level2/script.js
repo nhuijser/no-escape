@@ -176,13 +176,13 @@ function gamePlay() {
     window.requestAnimationFrame(gamePlay);
     player.score++;
     if (player.speed <= 9) {
-      player.speed = 3.5 + player.score * 0.004;
+      player.speed = 3.5 + player.score * 0.005;
     }
     if (otherSpeed <= 20) {
-      otherSpeed = 4.5 + player.score * 0.004;
+      otherSpeed = 4.5 + player.score * 0.005;
     }
 
-    if (player.score >= 10) {
+    if (player.score >= 3000) {
       winModal.style.display = "block";
       player.start = false;
     }
