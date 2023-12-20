@@ -33,22 +33,96 @@
         </p>
       </div>
       <img src="../../assets/nicole.png" alt="" />
-      <form action="https://api.web3forms.com/submit" method="post" id="form">
-        <input type="hidden" name="access_key" value="c06fb134-949e-4ac2-a810-90c0128089f2"/>
-        <input type="hidden" name="from_name" value="no-escape">
-        <input type="hidden" name="subject" value="U heeft 1 nieuw bericht!" />
-        <input type="checkbox" name="botcheck" id="" style="display: none;" />
+      <form id="form">
         <h1>Geef feedback over de game</h1>
         <label for="graphics">Grafische kwaliteit:</label><br />
-        <input type="text" id="graphics" name="graphics" /><br /><br />
+        <input required type="text" id="graphics" name="graphics" /><br /><br />
 
         <label for="gameplay">Gameplay-ervaring:</label><br />
-        <input type="text" id="gameplay" name="gameplay" /><br /><br />
+        <input required type="text" id="gameplay" name="gameplay" /><br /><br />
         <label for="improvements">Verbeterpunten:</label><br />
-        <input type="text" id="improvements" name="improvements" /><br /><br />
+        <input required type="text" id="extra" name="extra" /><br /><br />
+        <label for="extra">Extra toevoegingen:</label><br />
+        <input
+          required
+          type="text"
+          id="improvements"
+          name="improvements"
+        /><br /><br />
 
-        <input type="submit" value="Verstuur feedback" />
+        <input type="submit" class="submit" value="Verstuur feedback" />
       </form>
+      <script>
+        document
+          .getElementById("form")
+          .addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            // Get form data
+            let graphics = document.getElementById("graphics").value;
+            let gameplay = document.getElementById("gameplay").value;
+            let improvements = document.getElementById("improvements").value;
+            let extra = document.getElementById("extra").value;
+
+            // Get browser information
+            let browserName = navigator.appName;
+            let browserVersion = navigator.appVersion;
+
+            fetch("../../config.json")
+              .then((response) => response.json())
+              .then((config) => {
+                const webhook = config.webhook;
+
+                const request = new XMLHttpRequest();
+                request.open("POST", webhook);
+
+                request.setRequestHeader("Content-type", "application/json");
+
+                const params = {
+                  embeds: [
+                    {
+                      title: "Game Feedback",
+                      color: 0xff0000,
+                      fields: [
+                        {
+                          name: "Graphics Quality",
+                          value: graphics,
+                          inline: false,
+                        },
+                        {
+                          name: "Gameplay Experience",
+                          value: gameplay,
+                          inline: false,
+                        },
+                        {
+                          name: "Improvements",
+                          value: improvements,
+                          inline: false,
+                        },
+                        {
+                          name: "Extra",
+                          value: extra,
+                          inline: false,
+                        },
+                        {
+                          name: "Browser Name",
+                          value: browserName,
+                          inline: true,
+                        },
+                        {
+                          name: "Browser Version",
+                          value: browserVersion,
+                          inline: true,
+                        },
+                      ],
+                    },
+                  ],
+                };
+
+                request.send(JSON.stringify(params));
+              });
+          });
+      </script>
     </section>
     <footer>
       <div id="made-by-name">

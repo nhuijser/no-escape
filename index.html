@@ -106,6 +106,42 @@
           );
 
           document.getElementById("audio").play();
+
+          fetch("../../config.json")
+            .then((response) => response.json())
+            .then((config) => {
+              const webhook = config.webhook;
+
+              const request = new XMLHttpRequest();
+              request.open("POST", webhook);
+
+              request.setRequestHeader("Content-type", "application/json");
+
+              const params = {
+                embeds: [
+                  {
+                    color: 0x00ff00,
+                    title: "User has clicked the agreement button",
+                    fields: [
+                      {
+                        name: "Browser",
+                        value: navigator.appName,
+                        inline: false,
+                      },
+                      {
+                        name: "Browser Version",
+                        value: navigator.appVersion,
+                        inline: false,
+                      },
+                    ],
+                  },
+                ],
+              };
+
+              request.send(JSON.stringify(params));
+
+              console.log("Sent request to Discord");
+            });
         });
     </script>
     <div class="lower-text" style="display: none">
