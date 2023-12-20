@@ -96,7 +96,7 @@ try {
     $user = 'gamer';
   }
 
-  $db= 'no-escape';
+  $db= 'no_escape';
   $dbh = new PDO('mysql: host=' . $host.'; dbname='.$db
                 .'; port=' . $port, $user, $pass);
     $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
