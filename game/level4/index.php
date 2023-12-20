@@ -11,11 +11,13 @@
 
 <body>
 <div id="fietsband">
-  <video id='video' width="100%" height="100%" autoplay="autoplay" controls="true" onended="hideVideo()">
+  <video id='video' width="100%" height="100%" autoplay="autoplay" onended="hideVideo()">
   <source src="../../assets/fietsband.mp4" type="video/mp4">
   Your browser does not support the video tag.
   </video>
 </div>
+<button class="pause" onclick="pauseVideo()" id="pause" type="button"><i class="fa-solid fa-pause"></i></button>
+<button class="play" onclick="playVideo()" id="play" type="button"><i class="fa-solid fa-play"></i></button>
 <button class="skip" onclick="hideVideo()" id="skip" type="button">Skip <i class="fa-solid fa-forward-step"></i></button>
 
 
@@ -124,8 +126,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             
             if (count($result) > 0) {
                 $_SESSION["level4"] = true;
+                echo "<script>alert('Congrats!')</script>";
                 header("location: /no-escape/game/end");
-
                 exit;
             } else {
                 echo '<div id="video-container">
@@ -134,6 +136,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 Your browser does not support the video tag.
                 </video>
                 </div>';
+                echo "<script>document.getElementById('video').pause();</script>";
                 echo "<script>alert('Congrats!')</script>";
             }
         } catch (PDOException $e) {

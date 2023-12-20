@@ -10,18 +10,34 @@ function redirectToIndex() {
 
 function hideVideo() {
   document.getElementById('fietsband').style.display = 'none';
-  document.getElementById('video').pause();
+  pauseVideo();
+  document.getElementById('play').style.display = 'none';
+  document.getElementById('pause').style.display = 'none';
   document.getElementById('skip').style.display = 'none';
   document.getElementById('show').style.display = 'block';
+
+
 }
 
 function showVideo() {
   document.getElementById('fietsband').style.display = 'block';
-  document.getElementById('video').play();
+  playVideo();
   document.getElementById('skip').style.display = 'block';
   document.getElementById('show').style.display = 'none';
-
 }
+
+function pauseVideo(){
+  document.getElementById('video').pause();
+  document.getElementById('play').style.display = 'block';
+  document.getElementById('pause').style.display = 'none';
+}
+
+function playVideo(){
+  document.getElementById('video').play();
+  document.getElementById('play').style.display = 'none';
+  document.getElementById('pause').style.display = 'block';
+}
+
 
 var ananasSelect = document.getElementById('ananas');
 var nodigSelect = document.getElementById('nodig');
@@ -52,11 +68,6 @@ function update(e){
   document.documentElement.style.setProperty('--cursorX', x + 'px')
   document.documentElement.style.setProperty('--cursorY', y + 'px')
 }
-
-document.addEventListener('mousemove', function(e) {
-  document.getElementById('flashlight-container').style.setProperty('--cursorX', e.clientX + 'px');
-  document.getElementById('flashlight-container').style.setProperty('--cursorY', e.clientY + 'px');
-});
 
 
 
