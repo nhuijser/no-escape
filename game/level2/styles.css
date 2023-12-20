@@ -97,9 +97,10 @@
   background-image: url("../../assets/stone.webp");
   justify-content: center;
   text-align: center;
-  margin-top: 25%;
+  margin-top: 20%;
   margin-left: 35%;
   padding: 1%;
+  padding-bottom: 10%;
   border-radius: 20px;
   max-height: 15%;
   overflow: hidden;
