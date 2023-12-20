@@ -328,7 +328,6 @@ function DrawMaze(Maze, ctx, cellsize, endSprite = null) {
 
       ctx.restore();
     } else {
-      // if jumpscare active, bigger flashlight
       ctx.save();
 
       let flashlightRadius = Math.max(
@@ -411,7 +410,6 @@ function Player(maze, c, _cellsize, onComplete, sprite = null) {
     ctx.fillStyle = gradient;
     ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 
-    // Draw the player
     ctx.beginPath();
     ctx.fillStyle = "yellow";
     ctx.arc(
@@ -423,7 +421,6 @@ function Player(maze, c, _cellsize, onComplete, sprite = null) {
     );
     ctx.fill();
 
-    // Check if the player is at the maze's end
     if (coord.x === maze.endCoord().x && coord.y === maze.endCoord().y) {
       displayVictoryMess();
       player.unbindKeyDown();
@@ -454,10 +451,7 @@ function Player(maze, c, _cellsize, onComplete, sprite = null) {
     let cell = map[cellCoords.x][cellCoords.y];
     moves++;
 
-    // Store the current player coordinates before the move
     let oldCoords = { x: cellCoords.x, y: cellCoords.y };
-
-    // random chance to open a random window
 
     let videoArray = [
       "https://www.youtube-nocookie.com/embed/nrsnN23tmUA",
@@ -480,15 +474,13 @@ function Player(maze, c, _cellsize, onComplete, sprite = null) {
     if (rand(1000) < 17.5) {
       let video =
         videoArray[rand(videoArray.length)] +
-        "?autoplay=1&modestbranding=1&showinfo=0&rel=0&controls=0"; // Add controls=0 parameter
-      // Create a wrapper div
+        "?autoplay=1&modestbranding=1&showinfo=0&rel=0&controls=0";
       let wrapper = document.createElement("div");
       wrapper.style.position = "absolute";
       wrapper.style.zIndex = "1000";
-      wrapper.style.top = Math.random() * (window.innerHeight - 315) + "px"; // Subtract iframe height
-      wrapper.style.left = Math.random() * (window.innerWidth - 560) + "px"; // Subtract iframe width
+      wrapper.style.top = Math.random() * (window.innerHeight - 315) + "px";
+      wrapper.style.left = Math.random() * (window.innerWidth - 560) + "px";
 
-      // Add autoplay parameter
       let iframe = document.createElement("iframe");
       iframe.src = video;
       iframe.width = 560;
@@ -496,9 +488,8 @@ function Player(maze, c, _cellsize, onComplete, sprite = null) {
       iframe.allow =
         'title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen';
       iframe.allowFullscreen = true;
-      iframe.referrerPolicy = "no-referrer-when-downgrade"; // Add referrerPolicy attribute
+      iframe.referrerPolicy = "no-referrer-when-downgrade";
 
-      // Create a close button
       let closeButton = document.createElement("div");
       closeButton.innerHTML = "X";
       closeButton.style.position = "absolute";
@@ -509,7 +500,6 @@ function Player(maze, c, _cellsize, onComplete, sprite = null) {
       closeButton.style.color = "white";
       closeButton.style.cursor = "pointer";
 
-      // Add an event listener to the close button that removes the wrapper when clicked
       closeButton.addEventListener("click", function (event) {
         event.stopPropagation();
         document.body.removeChild(wrapper);
@@ -558,8 +548,6 @@ function Player(maze, c, _cellsize, onComplete, sprite = null) {
 
         break;
     }
-
-    // Draw the maze and player with updated coordinates
 
     draw.redrawMaze(cellSize, player.getPlayerCoords());
     player.redrawPlayer(cellSize, player.getPlayerCoords());
@@ -624,7 +612,6 @@ let finishSprite;
 let maze, draw, player;
 let cellSize;
 let difficulty;
-// sprite.src = 'media/sprite.png';
 
 window.onload = function () {
   let viewWidth = $("#view").width();
@@ -637,7 +624,6 @@ window.onload = function () {
     ctx.canvas.height = viewWidth - viewWidth / 100;
   }
 
-  //Load and edit sprites
   let completeOne = false;
   let completeTwo = false;
   let isComplete = () => {
@@ -709,23 +695,19 @@ function makeMaze() {
 
   function playAudioAndRemoveListener() {
     audio.play();
-    // Remove the event listener after the first interaction
     document.removeEventListener("keydown", playAudioAndRemoveListener);
 
-    // Set the keyPressed flag to true
     keyPressed = true;
 
-    // Stop the audio after a maximum play time
-    let maxPlayTime = 78000; // Maximum play time in milliseconds (e.g., 60000ms = 60 seconds)
+    let maxPlayTime = 78000;
     setInterval(function () {
-      audio.pause(); // Stop the audio
-      audio.currentTime = 0; // Reset the audio to the start
+      audio.pause();
+      audio.currentTime = 0;
       audio.volume = 0.5;
       audio.play();
     }, maxPlayTime);
 
-    // Schedule the first jumpscare after a key has been pressed
-    let initialDelay = 15000; // 30 seconds, adjust as needed
+    let initialDelay = 15000;
     console.log(
       "Next jumpscare in " + Math.floor(initialDelay / 1000) + " seconds"
     );
@@ -736,24 +718,18 @@ function makeMaze() {
 
   function playJumpscare() {
     if (keyPressed) {
-      // Set the jumpscareActive flag to true
       jumpscareActive = true;
 
-      // Generate a random number between 1 and 50
       let jumpscareNumber = Math.floor(Math.random() * 50) + 1;
 
-      // Construct the filename of the jumpscare
       let jumpscareFilename = `./jumpscares/jumpscare${jumpscareNumber}.wav`;
 
-      // Create a new Audio object
       let jumpscareAudio = new Audio(jumpscareFilename);
       jumpscareAudio.volume = 1;
       jumpscareAudio.play();
 
-      // Get the maze canvas
       let mazeCanvas = document.getElementById("mazeCanvas");
 
-      // Flicker the maze canvas
       let flickerInterval = setInterval(function () {
         mazeCanvas.style.opacity =
           mazeCanvas.style.opacity === "1" ? "0.1" : "1";
@@ -762,7 +738,6 @@ function makeMaze() {
         document.getElementById("mazeCanvas").style.backgroundColor = "red";
       }, 100);
 
-      // Stop flickering after 1 second
       setTimeout(function () {
         clearInterval(flickerInterval);
         mazeCanvas.style.opacity = "1";
@@ -770,17 +745,12 @@ function makeMaze() {
         draw.redrawMaze(cellSize, player.getPlayerCoords());
         player.redrawPlayer(cellSize, player.getPlayerCoords());
         document.getElementById("mazeCanvas").style.backgroundColor = "";
-
-        // Call redrawMaze and redrawPlayer after the jumpscare
       }, 3000);
 
-      // Set a random delay between 30 and 20 seconds (10000-20000 milliseconds)
       let delay = Math.random() * 10000 + 20000;
       console.log("Next jumpscare in " + Math.floor(delay / 1000) + " seconds");
 
-      // Schedule the next jumpscare
       setTimeout(function () {
-        // Reset the jumpscareActive flag to false before the next jumpscare
         jumpscareActive = false;
         playJumpscare();
       }, delay);

@@ -112,7 +112,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!empty($_POST["password"])) {
         $password = $_POST["password"];
 
-        // Use prepared statements to prevent SQL injection
         $sql = "SELECT * FROM loginpass WHERE password = :password AND id = 789";
         $stmt = $dbh->prepare($sql);
         $stmt->bindParam(':password', $password);
