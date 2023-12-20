@@ -475,6 +475,7 @@ function Player(maze, c, _cellsize, onComplete, sprite = null) {
       "https://www.youtube-nocookie.com/embed/2v54v3aeVGs",
       "https://www.youtube-nocookie.com/embed/SfT4FMkh1-w",
       "https://www.youtube-nocookie.com/embed/PLb720ZPcQI",
+      "https://www.youtube-nocookie.com/embed/V-XZcgDkO9o",
     ];
     if (rand(1000) < 30) {
       let video =
