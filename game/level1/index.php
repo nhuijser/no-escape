@@ -1,3 +1,14 @@
+<?php
+
+session_start();
+
+
+if(isset($_COOKIE['naam'])) {
+    $name = $_COOKIE['naam'];
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -24,7 +35,11 @@
       </div>
       <div id="startMessage-Container">
         <div id="message-start">
-          <h1>Are you ready?</h1>
+          <h1>Are you ready, <?php 
+
+          echo $name;
+          
+          ?>?</h1>
           <p>Press any key to start...</p>
         </div>
       </div>

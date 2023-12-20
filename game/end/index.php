@@ -3,7 +3,6 @@ session_start();
 
 if(isset($_COOKIE['naam'])) {
     $name = $_COOKIE['naam'];
-    echo $name;
 }
 ?>
 

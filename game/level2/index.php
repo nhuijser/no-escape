@@ -1,3 +1,13 @@
+<?php
+
+session_start();
+
+
+if(isset($_COOKIE['naam'])) {
+    $name = $_COOKIE['naam'];
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -24,7 +34,10 @@
       <div id="winModal" class="modal">
         <div class="modal-content">
           <h2>You won.</h2>
-          <p>Continue to next level.</p>
+          <p>Continue to next level. Be careful, <?php
+          
+          echo $name;
+          ?></p>
           <a href="../level3/"><button>Go!</button></a>
         </div>
       </div>

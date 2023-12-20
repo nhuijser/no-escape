@@ -182,7 +182,7 @@ function gamePlay() {
       otherSpeed = 4.5 + player.score * 0.004;
     }
 
-    if (player.score >= 3000) {
+    if (player.score >= 10) {
       winModal.style.display = "block";
       player.start = false;
     }
