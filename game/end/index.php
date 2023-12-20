@@ -1,3 +1,13 @@
+<?php
+session_start();
+
+// Check if the user is not logged in, then redirect to the login page
+if (!isset($_SESSION["level4"]) || $_SESSION["level4"] !== true) {
+    header("location: /no-escape/game/level4/");
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -10,7 +20,6 @@
       crossorigin="anonymous"
     ></script>
   </head>
-
   <body>
     <div class="overlay" id="overlay">
       <button type="button" onclick="playAudio();">claim prize</button>
@@ -43,12 +52,7 @@
         <label for="improvements">Verbeterpunten:</label><br />
         <input required type="text" id="extra" name="extra" /><br /><br />
         <label for="extra">Extra toevoegingen:</label><br />
-        <input
-          required
-          type="text"
-          id="improvements"
-          name="improvements"
-        /><br /><br />
+        <input required type="text" id="improvements" name="improvements"/><br /><br />
 
         <input type="submit" class="submit" value="Verstuur feedback" />
       </form>
@@ -154,7 +158,7 @@
       </div>
       <div id="info-page">
         <h2 id="bron-title">Bron</h2>
-        chatGPT4
+        chatGPT3.5
       </div>
     </footer>
     <script src="index.js"></script>

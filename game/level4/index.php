@@ -81,10 +81,7 @@
 <?php
 
 session_start();
-// if ($_SESSION["loggedin"] === true) {
-//     header("location: /");
-//     exit;
-// }
+
 
 try {   
   $port='3306';
