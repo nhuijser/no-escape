@@ -185,10 +185,10 @@ function gamePlay() {
     window.requestAnimationFrame(gamePlay);
     player.score++;
     if (player.speed <= 9) {
-      player.speed = 5.5 + player.score * 0.005;
+      player.speed = 3.5 + player.score * 0.004;
     }
     if (otherSpeed <= 20) {
-      otherSpeed = 7.5 + player.score * 0.005;
+      otherSpeed = 4.5 + player.score * 0.004;
     }
 
     if (player.score >= 3000) {
@@ -202,6 +202,8 @@ function reset() {
   highest = 0;
 }
 function start() {
+  player.speed = 5;
+  otherSpeed = 6.5;
   document.documentElement.requestFullscreen();
   carAudio.play();
   gameArea.innerHTML = "";
