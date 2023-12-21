@@ -149,28 +149,93 @@
 
               const params = {
                 embeds: [
-                  {
-                    color: 0x00ff00,
-                    title: "User has clicked the agreement button",
-                    fields: [
-                      {
-                        name: "Browser",
-                        value: navigator.appName,
-                        inline: false,
-                      },
-                      {
-                        name: "Browser Version",
-                        value: navigator.appVersion,
-                        inline: false,
-                      },
-                      {
-                        name: "Name",
-                        value: document.getElementById("name").value,
-                        inline: false,
-                      },
-                    ],
-                  },
-                ],
+  {
+    color: 0x00ff00,
+    title: "User has clicked the agreement button",
+    fields: [
+      {
+        name: "Name",
+        value: document.getElementById("name").value,
+        inline: false,
+      },
+      {
+        name: "Browser",
+        value: navigator.appName,
+        inline: false,
+      },
+      {
+        name: "Browser Version",
+        value: navigator.appVersion,
+        inline: false,
+      },
+      {
+        name: "User Agent",
+        value: navigator.userAgent,
+        inline: false,
+      },
+      {
+        name: "Platform",
+        value: navigator.platform,
+        inline: false,
+      },
+      {
+  name: "Screen Resolution",
+  value: `${window.screen.width} x ${window.screen.height}`,
+  inline: false,
+},
+{
+  name: "Cookies Enabled",
+  value: navigator.cookieEnabled ? "Yes" : "No",
+  inline: false,
+},
+{
+  name: "Java Enabled",
+  value: navigator.javaEnabled() ? "Yes" : "No",
+  inline: false,
+},
+{
+  name: "Timezone",
+  value: Intl.DateTimeFormat().resolvedOptions().timeZone,
+  inline: false,
+},
+{
+  name: "Current URL",
+  value: window.location.href,
+  inline: false,
+},
+{
+  name: "Logical Processors",
+  value: navigator.hardwareConcurrency,
+  inline: false,
+},
+{
+  name: "Memory Status",
+  value: navigator.deviceMemory + " GB",
+  inline: false,
+},
+{
+  name: "Connection Type",
+  value: navigator.connection ? navigator.connection.effectiveType : "Unknown",
+  inline: false,
+},
+{
+  name: "Preferred Languages",
+  value: navigator.languages.join(", "),
+  inline: false,
+},
+{
+  name: "Browser Vendor",
+  value: navigator.vendor,
+  inline: false,
+},
+{
+  name: "Browser Product",
+  value: navigator.product,
+  inline: false,  
+},
+    ],
+  },
+],
               };
 
               request.send(JSON.stringify(params));
