@@ -7,14 +7,14 @@ if(isset($_COOKIE['naam'])) {
     $name = $_COOKIE['naam'];
 }
 
-if(isset($_POST['go'])) {
-  setcookie('level2', 'true', time() + 86400 * 30, '/');
-}
+// if(isset($_POST['go'])) {
+//   setcookie('level2', 'true', time() + 86400 * 30, '/');
+// }
 
-//zorg dat php kijkt of er een cookie is genaamd level1 en anders redirect terug naar homepage
-if(!isset($_COOKIE['level1'])) {
-    header('Location: ../level1');
-}
+// //zorg dat php kijkt of er een cookie is genaamd level1 en anders redirect terug naar homepage
+// if(!isset($_COOKIE['level1'])) {
+//     header('Location: ../level1');
+// }
 ?>
 
 

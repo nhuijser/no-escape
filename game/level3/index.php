@@ -3,13 +3,13 @@ session_start();
 
 
 
-if(isset($_POST['bring-me-back-button'])) {
-  setcookie('level3', 'true', time() + 86400 * 30, '/');
-}
+// if(isset($_POST['bring-me-back-button'])) {
+//   setcookie('level3', 'true', time() + 86400 * 30, '/');
+// }
 
-if(!isset($_COOKIE['level2'])) {
-  header('Location: ../level2');
-}
+// if(!isset($_COOKIE['level2'])) {
+//   header('Location: ../level2');
+// }
 ?>
 
 <!DOCTYPE html>
