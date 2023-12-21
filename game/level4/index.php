@@ -82,6 +82,10 @@
 
 session_start();
 
+if(!isset($_COOKIE['level3'])) {
+  header("Location: ../level3");
+}
+
 
 try {   
   $port='3306';

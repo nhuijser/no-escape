@@ -7,7 +7,17 @@ if(isset($_COOKIE['naam'])) {
     $name = $_COOKIE['naam'];
 }
 
+if(isset($_POST['go'])) {
+  setcookie('level2', 'true', time() + 86400 * 30, '/');
+}
+
+//zorg dat php kijkt of er een cookie is genaamd level1 en anders redirect terug naar homepage
+if(!isset($_COOKIE['level1'])) {
+    header('Location: ../level1');
+}
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -38,7 +48,7 @@ if(isset($_COOKIE['naam'])) {
           
           echo $name;
           ?></p>
-          <a href="../level3/"><button>Go!</button></a>
+          <a href="../level3/"><button id="go">Go!</button></a>
         </div>
       </div>
       <div id="hitModal" class="modal">
