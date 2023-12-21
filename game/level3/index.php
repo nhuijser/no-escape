@@ -65,3 +65,4 @@ if(!isset($_COOKIE['level2'])) {
     <script src="script.js"></script>
   </body>
 </html>
+
