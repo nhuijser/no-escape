@@ -57,7 +57,7 @@
     </div>
 
     <div class="container" style="display: none">
-      <a href="./game/level1/">
+      <a href="./game/level1">
         <div class="level-box" data-text="Level 1">
           <h1 class="message">Level 1</h1>
           <span class="drop"></span>
@@ -70,7 +70,7 @@
         </div>
       </a>
 
-      <a href="./game/level2/">
+      <a href="./game/level2">
         <div class="level-box" data-text="Level 2">
           <h1 class="message">Level 2</h1>
           <span class="drop"></span>
@@ -82,7 +82,7 @@
           <span class="drop"></span>
         </div>
       </a>
-      <a href="./game/level3/">
+      <a href="./game/level3">
         <div class="level-box" data-text="Level 3">
           <h1 class="message">Level 3</h1>
           <span class="drop"></span>
