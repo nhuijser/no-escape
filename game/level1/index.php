@@ -7,10 +7,10 @@ if(isset($_COOKIE['naam'])) {
     $name = $_COOKIE['naam'];
 }
 
-// //maak een cookie genaamd level1 en zorg dat ie pas wordt gegeven als je op de button klikt met id okBtn klikt
-// if(isset($_POST['okBtn'])) {
-//     setcookie('level1', 'true', time() + 86400 * 30, '/');
-// }
+//maak een cookie genaamd level1 en zorg dat ie pas wordt gegeven als je op de button klikt met id okBtn klikt
+if(isset($_POST['okBtn'])) {
+    setcookie('level1', 'true', time() + 86400 * 30, '/');
+}
 
 ?>
 
